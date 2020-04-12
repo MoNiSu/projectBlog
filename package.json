@@ -9,7 +9,10 @@
   "author": "monisu",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.0.2",
     "express": "^4.17.1",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.0",
     "mysql": "^2.18.1"
   }
 }
