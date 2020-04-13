@@ -2,15 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const session = require('express-session');
 
-const app = express();
-const router = express.Router();
-
 const authdb = require('../config/database_auth.js');
 const connection = mysql.createConnection(authdb);  
 
 const sessionAuth = require('../config/session.js');
 
-app.use(session(sessionAuth));
+const router = express.Router();
+
+router.use(session(sessionAuth));
 
 router.get('/login', function(req, res, next) {
   res.render('auth/login');
@@ -18,9 +17,9 @@ router.get('/login', function(req, res, next) {
 
 router.get('/logout', function(req, res, next) {
   delete req.session.username;
-  req.session.save(() => {
-    res.redirect('./');
-  })
+  req.session.save(function() {
+    res.redirect('../')
+  });
 });
 
 router.get('/signup', function(req, res, next) {
@@ -43,8 +42,8 @@ router.post('/login', function(req, res) {
         if(db.password == login.password) {
           console.log('login success : ', db);
           req.session.username = db.username;
-          req.session.save(() => {
-            res.redirect('./');
+          req.session.save(function() {
+            res.redirect('../');
           });
         } else {
           res.render('auth/login_fail_1');
@@ -71,10 +70,10 @@ router.post('/signup', function(req, res) {
       res.render('auth/signup_fail');
     } else {
       console.log('signup success : ', results);
-      req.session.username = signup.username;
-        req.session.save(() => {
-          res.render('auth/signup_success', {username : signup.username});
-        });
+      //req.session.username = signup.username;
+      //  req.session.save(function() {
+      //    res.render('auth/signup_success', {username : signup.username});
+      //  });
     }
   });
 });
