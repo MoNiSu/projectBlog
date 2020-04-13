@@ -31,10 +31,10 @@ router.post('/login', function(req, res) {
     password : req.body.password
   };
 
-  connection.query('SELECT * FROM users WHERE id = ?', [login.id], function(error, results, fields) {
-    if(error) {
-      console.log("error ocurred", error);
-      res.render('error');
+  connection.query('SELECT * FROM users WHERE id = ?', [login.id], function(err, results, fields) {
+    if(err) {
+      console.log("error ocurred", err);
+      res.render('err');
     } else {
       if(results.length > 0) {
         var db = results[0];
@@ -63,9 +63,9 @@ router.post('/signup', function(req, res) {
     created : today
   };
 
-  connection.query('INSERT INTO users SET ?', signup, function(error, results, fields) {
-    if(error) {
-      console.log("error ocurred", error);
+  connection.query('INSERT INTO users SET ?', signup, function(err, results, fields) {
+    if(err) {
+      console.log("error ocurred", err);
       res.render('auth/signup_fail');
     } else {
       console.log('signup success : ', results);
