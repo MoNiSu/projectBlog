@@ -1,18 +1,27 @@
 const express = require('express');
 const mysql = require('mysql');
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
 
+const app = express();
 const router = express.Router();
 
-const dbconfig = require('../config/database_auth.js');
-const connection = mysql.createConnection(dbconfig);  
+const authdb = require('../config/database_auth.js');
+const connection = mysql.createConnection(authdb);  
 
+const sessionAuth = require('../config/session.js');
+
+app.use(session(sessionAuth));
 
 router.get('/login', function(req, res, next) {
   res.render('auth/login');
 });
 
+router.get('/logout', function(req, res, next) {
+  delete req.session.username;
+  req.session.save(() => {
+    res.redirect('./');
+  })
+});
 
 router.get('/signup', function(req, res, next) {
   res.render('auth/signup');
@@ -30,9 +39,13 @@ router.post('/login', function(req, res) {
       res.render('error');
     } else {
       if(results.length > 0) {
-        if(results[0].password == login.password) {
-          console.log('login success : ', results[0]);
-          res.render('auth/login_success', {username : results[0].username});
+        var db = results[0];
+        if(db.password == login.password) {
+          console.log('login success : ', db);
+          req.session.username = db.username;
+          req.session.save(() => {
+            res.redirect('./');
+          });
         } else {
           res.render('auth/login_fail_1');
         }
@@ -58,7 +71,10 @@ router.post('/signup', function(req, res) {
       res.render('auth/signup_fail');
     } else {
       console.log('signup success : ', results);
-      res.render('auth/signup_success', {username : signup.username});
+      req.session.username = signup.username;
+        req.session.save(() => {
+          res.render('auth/signup_success', {username : signup.username});
+        });
     }
   });
 });

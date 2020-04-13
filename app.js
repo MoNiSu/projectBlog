@@ -1,12 +1,10 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-const session = require('express-session');
 
 const app = express();
 const server = http.createServer(app);
 
-const sessionconfig = require('./config/session.js');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const boardRouter = require('./routes/board')
@@ -17,8 +15,6 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(session(sessionconfig));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
