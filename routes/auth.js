@@ -3,11 +3,10 @@ const mysql = require('mysql');
 const session = require('express-session');
 
 const authdb = require('../config/database_auth.js');
-const connection = mysql.createConnection(authdb);  
-
 const sessionAuth = require('../config/session.js');
 
 const router = express.Router();
+const connection = mysql.createConnection(authdb);  
 
 router.use(session(sessionAuth));
 
@@ -70,10 +69,10 @@ router.post('/signup', function(req, res) {
       res.render('auth/signup_fail');
     } else {
       console.log('signup success : ', results);
-      //req.session.username = signup.username;
-      //  req.session.save(function() {
-      //    res.render('auth/signup_success', {username : signup.username});
-      //  });
+      req.session.username = signup.username;
+        req.session.save(function() {
+          res.render('auth/signup_success', {username : signup.username});
+        });
     }
   });
 });

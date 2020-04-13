@@ -2,12 +2,12 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 
-const app = express();
-const server = http.createServer(app);
-
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const boardRouter = require('./routes/board')
+
+const app = express();
+const server = http.createServer(app);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
