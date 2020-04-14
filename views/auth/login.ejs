@@ -10,12 +10,12 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id = "root">
       <h1>로그인 해주세요.</h1>
-      <form action = "login" method = "post">
+      <form action = "login" method = "POST">
         <div> 아이디 : <input type = "text" name = "id" placeholder = "ID" required /> </div>
         <div> 비밀번호 : <input type = "password" name = "password" placeholder = "PASSWORD" required /> </div>
         <div>
-          <input type = "submit" id = "button" value = "로그인" />
-          <input type = "button" id  = "button" onclick="location.href='./signup'" value = "회원가입" />
+          <input type = "submit" class = "button" value = "로그인" />
+          <input type = "button" class = "button" onclick="location.href='./signup'" value = "회원가입" />
         </div>
       </form>
     </div>

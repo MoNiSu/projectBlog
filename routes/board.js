@@ -1,9 +1,12 @@
 const express = require('express');
+const mysql = require('mysql');
 const session = require('express-session');
 
+const boarddb = require('../config/database_board.js');
 const sessionAuth = require('../config/session.js');
 
 const router = express.Router();
+const connection = mysql.createConnection(boarddb); 
 
 router.use(session(sessionAuth));
 
