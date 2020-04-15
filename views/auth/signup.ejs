@@ -2,22 +2,23 @@
 <html lang = "ko">
   <head>
     <meta charset = "UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SignUp</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1" />
+    <title><%= title %></title>
+    <link rel = 'stylesheet' href = '/stylesheets/style.css' />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id = "root">
       <h1>회원가입</h1>
-      <form action = "signup" method = "POST">
-        <div> 아이디 : <input type = "text" name = "id" placeholder = "ID" required /> </div>
-        <div> 이름(닉네임) : <input type = "text" name = "username" placeholder = "USERNAME" required /> </div>
-        <div> 비밀번호 : <input type = "password" name = "password" placeholder = "PASSWORD" required /> </div>
-        <div>
+      <div id = "input">
+        <form action = "signup" method = "POST">
+          <div> <input type = "text" name = "id" placeholder = "ID" required /> </div>
+          <div> <input type = "text" name = "username" placeholder = "USERNAME" required /> </div>
+          <div> <input type = "password" name = "password" placeholder = "PASSWORD" required /> </div>
           <input type = "submit" class = "button" value = "회원가입" />
-        </div>
-      </form>
+        </form>
+        <input type = "button" class = "button" onclick="location.href='../'" value = "홈으로" />
+      </div>
     </div>
   </body>
 </html>

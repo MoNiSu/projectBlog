@@ -11,18 +11,18 @@ const connection = mysql.createConnection(authdb);
 router.use(session(sessionAuth));
 
 router.get('/login', function(req, res, next) {
-  res.render('auth/login');
+  res.render('auth/login', { title: 'Login' });
 });
 
 router.get('/logout', function(req, res, next) {
-  delete req.session.username;
-  req.session.save(function() {
+  req.session.destroy(function(){ 
+    req.session;
     res.redirect('../')
   });
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('auth/signup');
+  res.render('auth/signup', { title: 'Signup' });
 });
 
 router.post('/login', function(req, res) {
@@ -33,8 +33,8 @@ router.post('/login', function(req, res) {
 
   connection.query('SELECT * FROM users WHERE id = ?', [login.id], function(err, results, fields) {
     if(err) {
-      console.log("error ocurred", err);
-      res.render('err');
+      console.log("error occurred", err);
+      res.render('error', { title: 'Error', error: err });
     } else {
       if(results.length > 0) {
         var db = results[0];
@@ -45,10 +45,10 @@ router.post('/login', function(req, res) {
             res.redirect('../');
           });
         } else {
-          res.render('auth/login_fail_1');
+          res.render('error', { title: 'Login Error', error: '비밀번호가 올바르지 않습니다.' });
         }
       } else {
-        res.render('auth/login_fail_2');
+        res.render('error', { title: 'Login Error', error: '아이디가 존재하지 않습니다.' });
       }
     }
   });
@@ -65,13 +65,13 @@ router.post('/signup', function(req, res) {
 
   connection.query('INSERT INTO users SET ?', signup, function(err, results, fields) {
     if(err) {
-      console.log("error ocurred", err);
-      res.render('auth/signup_fail');
+      console.log("error occurred", err);
+      res.render('error', { title: 'Signup Error', error: '아이디 혹은 닉네임이 존재합니다.' });
     } else {
       console.log('signup success : ', results);
       req.session.username = signup.username;
         req.session.save(function() {
-          res.render('auth/signup_success', {username : signup.username});
+          res.redirect('../');
         });
     }
   });

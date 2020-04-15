@@ -2,16 +2,18 @@
 <html lang = "ko">
   <head>
     <meta charset = "UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1" />
+    <title><%= title %></title>
+    <link rel = 'stylesheet' href = '/stylesheets/style.css' />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id = "root">
-      <h1>어서오세요!</h1>
-      <input type = "button" class = "button" onclick="location.href='./board'" value = "방명록 이용하기" />
-      <input type = "button" class = "button" onclick="location.href='./auth/login'" value = "로그인" />
+      <h1>어서오세요! <%= username %></h1>
+      <div>
+        <input type = "button" class = "button" onclick="location.href='./board'" value = "방명록 이용하기" />
+        <input type = "button" class = "button" onclick="location.href='./auth/<%= location %>'" value = "<%= value %>" />
+      </div>
     </div>
   </body>
 </html>
