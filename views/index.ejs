@@ -9,10 +9,18 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id = "root">
-      <h1>어서오세요! <%= username %></h1>
-      <div>
-        <input type = "button" class = "button" onclick="location.href='./board'" value = "방명록 이용하기" />
-        <input type = "button" class = "button" onclick="location.href='./auth/<%= location %>'" value = "<%= value %>" />
+      <div id = "header">
+      </div>
+      <div id = "nav">
+      </div>
+      <div id = "main">
+        <h1>어서오세요! <%= username %></h1>
+        <div>
+          <input type = "button" class = "button" onclick="location.href='./board'" value = "방명록 이용하기" />
+          <input type = "button" class = "button" onclick="location.href='./auth/<%= location %>'" value = "<%= value %>" />
+        </div>
+      </div>
+      <div id = "footer">
       </div>
     </div>
   </body>

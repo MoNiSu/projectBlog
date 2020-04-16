@@ -9,33 +9,42 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id = "root">
-      <h1>방명록</h1>
-      <div id = "input">
+      <div id = "header">
+      </div>
+      <div id = "nav">
+      </div>
+      <div id = "main">
+        <h1><%= title %></h1>
         <form action = "board" method = "POST">
           <div> <input type = "text" name = "text" placeholder = "text" required /> </div>
           <div> <input type = "submit" class = "button" value = "남기기" /> </div>
         </form>
-        <input type = "button" class = "button" onclick="location.href='../'" value = "홈으로" />
+        <div>
+          <input type = "button" class = "button" onclick="location.href='../'" value = "홈으로" />
+        </div>
+        <table>
+          <tr>
+            <th>번호</th>
+            <th>글쓴이</th>
+            <th>글</th>
+            <th>작성일</th>
+          </tr>
+          <% 
+            for(var i = 0; i<rows.length; i++) { 
+          %>
+          <tr>
+            <td><%= rows[i].number %></td>
+            <td><%= rows[i].username %></td>
+            <td><%= rows[i].text %></td>
+            <td><%= rows[i].created %></td>
+          </tr>
+          <% 
+            } 
+          %>
+        </table>
       </div>
-      <table>
-        <tr>
-          <th>번호</th>
-          <th>글쓴이</th>
-          <th>글</th>
-          <th>작성일</th>
-        </tr>
-        <% 
-          for(var i = 0; i<rows.length; i++) { 
-        %>
-        <tr>
-          <td><%= rows[i].number %></td>
-          <td><%= rows[i].username %></td>
-          <td><%= rows[i].text %></td>
-          <td><%= rows[i].created %></td>
-        </tr>
-        <% 
-          } 
-        %>
+      <div id = "footer">
+      </div>
     </div>
   </body>
 </html>
