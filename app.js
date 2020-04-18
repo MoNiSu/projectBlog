@@ -5,7 +5,7 @@ const path = require('path');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-const boardRouter = require('./routes/board')
+const boardRouter = require('./routes/board');
 
 const app = express();
 const server = http.createServer(app);
@@ -21,20 +21,20 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/board', boardRouter);
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 	next(createError(404));
 });
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res) {
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
-  
+
 	res.status(err.status || 500);
-	//console.log("error occurred", err);
+	// console.log("error occurred", err);
 	res.render('error', { title: 'Error', error: err });
 });
 
-server.listen(3000, function() {
+server.listen(3000, function () {
 	console.log(' server listening on port 3000 ');
 });
 

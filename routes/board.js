@@ -6,43 +6,42 @@ const boarddb = require('../config/database_board.js');
 const sessionAuth = require('../config/session.js');
 
 const router = express.Router();
-const connection = mysql.createConnection(boarddb); 
+const connection = mysql.createConnection(boarddb);
 
 router.use(session(sessionAuth));
 
-router.get('/', function(req, res, next) {
-  if(req.session.username) {
-    connection.query('SELECT * FROM board', function(err, results, fields) {
-      if(err) {
-        console.log("error occurred", err);
-        res.render('error', { title: 'Error', error : err });  
-      } else {
-        res.render('board', { title: 'Board', rows: results.reverse() });
-         
-      }
-    });
-  } else {
-    res.redirect('./auth/login');
-  }
+router.get('/', function (req, res) {
+	if (req.session.username) {
+		connection.query('SELECT * FROM board', function (err, results) {
+			if (err) {
+				console.log('error occurred', err);
+				res.render('error', { title: 'Error', error: err });
+			} else {
+				res.render('board', { title: 'Board', rows: results.reverse() });
+			}
+		});
+	} else {
+		res.redirect('./auth/login');
+	}
 });
 
-router.post('/', function(req, res) {
-  var today = new Date();
-  var board = {
-    username : req.session.username,
-    text : req.body.text,
-    created : today
-  };
+router.post('/', function (req, res) {
+	var today = new Date();
+	var board = {
+		username: req.session.username,
+		text: req.body.text,
+		created: today
+	};
 
-  connection.query('INSERT INTO board SET ?', board, function(err, results, fields) {
-    if(err) {
-      console.log("error occurred", err);
-      res.render('error', { title: 'Error', error: err });
-    } else {
-      console.log('board success : ', results);
-      res.redirect('/board');
-    }
-  });
+	connection.query('INSERT INTO board SET ?', board, function (err, results) {
+		if (err) {
+			console.log('error occurred', err);
+			res.render('error', { title: 'Error', error: err });
+		} else {
+			console.log('board success : ', results);
+			res.redirect('/board');
+		}
+	});
 });
 
 module.exports = router;
