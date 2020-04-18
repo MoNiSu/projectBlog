@@ -6,13 +6,13 @@ This project is time to create own web.
 a. Download or clone this project to your directory.   
 b. Run terminal and go to the installed directory.   
 c. Install the node package using the this command.   
-    npm install   
+<pre><code>npm install</code></pre>   
 
 ### 1.2. Usage   
 Use this command to run this app.   
-    npm start
+<pre><code>npm start</code></pre>   
 OR   
-    node app.js   
+<pre><code>node app.js</code></pre>   
 
 ### 1.3. Requirements   
 This app requires MySQL.   
