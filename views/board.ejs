@@ -41,7 +41,7 @@
           </tr>
           <% 
             for(var i = 0; i<rows.length; i++) { 
-              let sum = rows[i].idx + rows[i].idx/10 ;
+              let sum = rows[i].idx + (rows[i].idx - 1)/10 ;
           %>
           <tr>
             <td><%= sum %></td>
