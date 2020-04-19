@@ -10,6 +10,8 @@ const boardRouter = require('./routes/board');
 const app = express();
 const server = http.createServer(app);
 
+const PORT = process.env.PORT || 3000;
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -34,8 +36,8 @@ app.use(function (err, req, res) {
 	res.render('error', { title: 'Error', error: err });
 });
 
-server.listen(3000, function () {
-	console.log(' server listening on port 3000 ');
+server.listen(PORT, function () {
+	console.log(' server listening on ', PORT);
 });
 
 module.exports = app;
