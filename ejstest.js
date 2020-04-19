@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
-	/* index: 'index', { title: 'Home', username: '', auth: 'login' }
+	/* index: 'index', { title: 'Home', username: 'A', auth: 'login' }
 	error: 'error', { title: 'Error', error: 'err' }
-	board: 'board', { title: 'Board', rows: '' }
+	board: 'board', { title: 'Board', rows: 'A' }
 	login: 'auth/login', { title: 'Login' }
 	signup: 'auth/signup', { title: 'Signup' } */
 	res.render('index', { title: 'Home', username: '', auth: 'login' });
