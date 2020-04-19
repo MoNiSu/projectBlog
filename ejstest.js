@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 /* Modification required for each model
 windows_wsl : 8080, ubuntu: 3000 mac: */
-const PORT = 8080;
+const PORT = 3000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -21,11 +21,11 @@ app.get('/', function (req, res) {
 	board: 'board', { title: 'Board', rows: 'A' }
 	login: 'auth/login', { title: 'Login' }
 	signup: 'auth/signup', { title: 'Signup' } */
-	res.render('index', { title: 'Home', username: '', auth: 'login' });
+	res.render('board', { title: 'Board', rows: '' });
 });
 
 server.listen(PORT, function () {
-	console.log(' server listening on port 8080 ');
+	console.log(' server listening on port ', PORT);
 });
 
 module.exports = app;
