@@ -15,7 +15,7 @@
   },
   "rules": {
     "indent": ["error", "tab"],
-    "quotes": ["error ", "single"],
+    "quotes": ["error", "single"],
     "keyword-spacing": ["error"],
     "space-before-function-paren": ["error"],
     "eqeqeq": ["error"],
