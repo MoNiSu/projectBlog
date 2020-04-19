@@ -38,7 +38,7 @@ router.get('/signup', function (req, res) {
 });
 
 router.post('/login', function (req, res) {
-	var login = {
+	let login = {
 		userid: req.body.id,
 		password: req.body.password
 	};
@@ -49,7 +49,7 @@ router.post('/login', function (req, res) {
 			res.render('error', { title: 'Error', error: err });
 		} else {
 			if (results.length > 0) {
-				var db = results[0];
+				let db = results[0];
 				if (db.password === login.password) {
 					console.log('login success : ', db);
 					req.session.username = db.username;
@@ -67,8 +67,8 @@ router.post('/login', function (req, res) {
 });
 
 router.post('/signup', function (req, res) {
-	var today = new Date();
-	var signup = {
+	let today = new Date();
+	let signup = {
 		userid: req.body.id,
 		username: req.body.username,
 		password: req.body.password,
@@ -81,7 +81,7 @@ router.post('/signup', function (req, res) {
 			res.render('error', { title: 'Signup Error', error: '아이디 혹은 닉네임이 존재합니다.' });
 		} else {
 			console.log('signup success : ', results);
-			req.session.username = results.username;
+			req.session.username = signup.username;
 			req.session.save(function () {
 				res.redirect('../');
 			});

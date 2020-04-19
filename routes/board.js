@@ -26,8 +26,8 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-	var today = new Date();
-	var board = {
+	let today = new Date();
+	let board = {
 		username: req.session.username,
 		text: req.body.text,
 		created: today
