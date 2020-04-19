@@ -41,9 +41,10 @@
           </tr>
           <% 
             for(var i = 0; i<rows.length; i++) { 
+              let sum = rows[i].idx + rows[i].idx/10 ;
           %>
           <tr>
-            <td><%= rows[i].idx %></td>
+            <td><%= sum %></td>
             <td><%= rows[i].username %></td>
             <td><%= rows[i].text %></td>
             <td><%= rows[i].created %></td>
