@@ -2,11 +2,11 @@ const express = require('express');
 const mysql = require('mysql');
 const session = require('express-session');
 
-const authdb = require('../config/database_auth.js');
+const dbConfig = require('../config/database.js');
 const sessionAuth = require('../config/session.js');
 
 const router = express.Router();
-const connection = mysql.createConnection(authdb);
+const connection = mysql.createConnection(dbConfig);
 
 router.use(session(sessionAuth));
 
@@ -69,7 +69,7 @@ router.post('/login', function (req, res) {
 router.post('/signup', function (req, res) {
 	var today = new Date();
 	var signup = {
-		id: req.body.id,
+		userid: req.body.id,
 		username: req.body.username,
 		password: req.body.password,
 		created: today
