@@ -23,25 +23,37 @@ body {
 #header {
   width: 100%;
   height: 10%;
-  padding: 0px;
-  border-top-width: 3px;
+  padding: 0;
+  border-top: 5px;
   border-top-color: rgb(144, 238, 144);
   border-top-style: solid;
-  border: 1px solid rgb(0, 0, 0);
   margin: 0px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#header #headerLogo {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-#header #logo {
-  width: auto;
-  height: 80%;
-  margin: 10% 1%;
+#header #headerLogo:hover {
+  cursor: pointer;
 }
 
-#header #bigName:hover {
-  cursor: pointer;
+#header #logoPng {
+  width: auto;
+  height: 80%;
+  margin: 10% 2%;
+}
+
+#header #bigName {
+  height: auto;
 }
 
 #nav {
