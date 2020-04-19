@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
-const createError = require('http-errors');
 const path = require('path');
+// const createError = require('http-errors');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -21,9 +21,9 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/board', boardRouter);
 
-app.use(function (req, res, next) {
+/* app.use(function (req, res, next) {
 	next(createError(404));
-});
+}); */
 
 app.use(function (err, req, res) {
 	res.locals.message = err.message;
