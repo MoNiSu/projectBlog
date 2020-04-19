@@ -1,5 +1,5 @@
-const bigName = document.getElementById('bigName');
+const headerLogo = document.getElementById('headerLogo');
 
-bigName.onclick = function () {
+headerLogo.onclick = function () {
 	location.href = '../';
 };
