@@ -43,7 +43,7 @@ router.post('/login', function (req, res) {
 		password: req.body.password
 	};
 
-	connection.query('SELECT * FROM users WHERE idx = ?', [login.userid], function (err, results) {
+	connection.query('SELECT * FROM users WHERE userid = ?', [login.userid], function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
 			res.render('error', { title: 'Error', error: err });
@@ -81,7 +81,7 @@ router.post('/signup', function (req, res) {
 			res.render('error', { title: 'Signup Error', error: '아이디 혹은 닉네임이 존재합니다.' });
 		} else {
 			console.log('signup success : ', results);
-			req.session.username = signup.username;
+			req.session.username = results.username;
 			req.session.save(function () {
 				res.redirect('../');
 			});
