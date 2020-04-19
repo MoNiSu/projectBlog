@@ -11,18 +11,30 @@ const connection = mysql.createConnection(authdb);
 router.use(session(sessionAuth));
 
 router.get('/login', function (req, res) {
-	res.render('auth/login', { title: 'Login' });
+	if (req.session.username) {
+		res.redirect('../');
+	} else {
+		res.render('auth/login', { title: 'Login' });
+	}
 });
 
 router.get('/logout', function (req, res) {
-	req.session.destroy(function () {
-		req.session;
-		res.redirect('../');
-	});
+	if (req.session.username) {
+		req.session.destroy(function () {
+			req.session;
+			res.redirect('../');
+		});
+	} else {
+		res.render('error', { title: 'Error', error: '올바르지 않은 접근입니다.' });
+	}
 });
 
 router.get('/signup', function (req, res) {
-	res.render('auth/signup', { title: 'Signup' });
+	if (req.session.username) {
+		res.redirect('../');
+	} else {
+		res.render('auth/signup', { title: 'Signup' });
+	}
 });
 
 router.post('/login', function (req, res) {
