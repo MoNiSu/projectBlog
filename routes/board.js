@@ -6,7 +6,7 @@ const dbConfig = require('../config/database.js');
 const sessionAuth = require('../config/session.js');
 
 const router = express.Router();
-const connection = mysql.createConnection(dbConfig);
+const connection = mysql.createPool(dbConfig);
 
 router.use(session(sessionAuth));
 
