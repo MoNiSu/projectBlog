@@ -3,6 +3,11 @@
   <head>
     <meta charset = "UTF-8">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1" />
+    <link rel="icon" href="/images/avicon-16.png" sizes="16x16">
+    <link rel="icon" href="/images/favicon-32.png" sizes="32x32">
+    <link rel="icon" href="/images/favicon-48.png" sizes="48x48">
+    <link rel="icon" href="/images/favicon-64.png" sizes="64x64">
+    <link rel="icon" href="/images/favicon-128.png" sizes="128x128">
     <title><%= title %></title>
     <link rel = 'stylesheet' href = '/stylesheets/style.css' />
   </head>
@@ -10,11 +15,12 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id = "root">
       <div id = "header">
-        <h1>MoNiSu's World</h1>
+        <img id="logo" src="/images/favicon-128.png">
+        <h1 id="bigName">MoNiSu's Blog</h1>
       </div>
       <div id = "nav">
         <ul>
-          <li><a href = "../">HOME</a></li>
+          <li><a href="../"></a>HOME</li>
           <li><a href = "../board">방명록</a></li>
         </ul>
       </div>
@@ -26,11 +32,12 @@
           <input type = "submit" class = "button" value = "로그인"/>
         </form>
         <div>
-          <input type = "button" class = "button" onclick = "location.href = './signup'" value = "회원가입"/>
+          <input type = "button" class = "button" onclick = "location.href = './signup'" value = "signup"/>
         </div>
       </div>
       <div id = "footer">
       </div>
     </div>
+    <script type="text/javascript" src="/javascripts/index.js"></script>
   </body>
 </html>
