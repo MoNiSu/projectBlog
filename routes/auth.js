@@ -39,11 +39,11 @@ router.get('/signup', function (req, res) {
 
 router.post('/login', function (req, res) {
 	var login = {
-		id: req.body.id,
+		userid: req.body.id,
 		password: req.body.password
 	};
 
-	connection.query('SELECT * FROM users WHERE id = ?', [login.id], function (err, results) {
+	connection.query('SELECT * FROM users WHERE idx = ?', [login.userid], function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
 			res.render('error', { title: 'Error', error: err });
