@@ -68,6 +68,8 @@ router.post('/login', function (req, res) {
 
 router.post('/signup', function (req, res) {
 	let today = new Date();
+	today.setHours(today.getHours() + 9);
+	
 	let signup = {
 		userid: req.body.id,
 		username: req.body.username,
