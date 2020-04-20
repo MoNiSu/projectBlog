@@ -28,7 +28,7 @@ app.use('/board', boardRouter);
 }); */
 
 app.use(function (err, req, res) {
-	res.locals.message = err.message;
+	res.locals.message = err;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
 	res.status(err.status || 500);
