@@ -16,12 +16,12 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
-	/* index: 'index', { username: 'A', auth: 'signin' }
+	/* index: 'index', { username: 'A', authLocation: 'signin', auth: 'Signin' }
 	error: 'error', { title: 'Error', error: 'err' }
 	board: 'board', { title: 'Board', rows: 'A' }
 	signin: 'auth/signin'
 	signup: 'auth/signup' */
-	res.render('board', { rows: '' });
+	res.render('auth/signin');
 	// console.log(req.get('host'));
 });
 

@@ -30,12 +30,6 @@ header img{
   margin: 0 0.5vw;
 }
 
-header h1 {
-  font-size: 32px;
-  font-weight: bold;
-  margin: 0 0.5vw;
-}
-
 nav {
   height: 5vh;
   border-top: 1px solid rgb(0, 0, 0);
@@ -87,6 +81,18 @@ footer {
   border-top: 1px solid rgb(0, 0, 0);
 }
 
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0.5vh 0.5vw;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0.5vh 0.5vw;
+}
+
 input {
   border: 1px solid rgb(0, 0, 0);
   display: flex;
@@ -95,7 +101,7 @@ input {
 }
 
 button {
-  width: 5vh;
+  width: 6vh;
   height: 3vh;
   -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
@@ -130,12 +136,16 @@ table {
   border-radius: 5px;
   border-collapse: collapse;
   text-align: center;
+  display: table;
 }
 
 th {
   border: 1px solid rgb(0, 0, 0);
+  display: table-cell;
+  font-weight: bold;
 }
 
 td {
   border: 1px solid rgb(0, 0, 0);
+  display: table-cell;
 }
