@@ -9,9 +9,9 @@ router.use(session(sessionAuth));
 
 router.get('/', function (req, res) {
 	if (req.session.username) {
-		res.render('index', { username: req.session.username + '님', authLocation: 'signout', auth: 'Signout' });
+		res.render('index', { username: req.session.username + '님', authLocation: 'signout', auth: 'Sign Out' });
 	} else {
-		res.render('index', { username: '', authLocation: 'signin', auth: 'Signin' });
+		res.render('index', { username: '', authLocation: 'signin', auth: 'Sign In' });
 	}
 });
 
