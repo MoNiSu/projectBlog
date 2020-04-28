@@ -94,20 +94,31 @@ h2 {
 }
 
 input {
+  -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  margin: 0.1vh 0.1vw;
   border: 1px solid rgb(0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+input:hover, input:focus {
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 1px inset;
+}
+
 button {
-  width: 6vh;
+  width: 7vh;
   height: 3vh;
   -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  margin: 0.1vh 0.1vw;
   border: 1px solid rgb(0, 0, 0);
 	border-radius: 5px;
   color: rgb(0, 0, 0);
@@ -137,6 +148,10 @@ table {
   border-collapse: collapse;
   text-align: center;
   display: table;
+}
+
+tbody {
+  display: table-row-group;
 }
 
 th {
