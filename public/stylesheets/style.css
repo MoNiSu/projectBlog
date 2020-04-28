@@ -44,12 +44,12 @@ nav ul {
 }
 
 nav ul li {
-  margin: 0 0.3vw;
+  margin: 0 0.5vw;
   display: flex;
 } 
 
 nav ul li a {
-  width: 3vw;
+  width: 4vw;
   -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
@@ -111,7 +111,7 @@ input:hover, input:focus {
 }
 
 button {
-  width: 7vh;
+  width: 10vh;
   height: 3vh;
   -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
