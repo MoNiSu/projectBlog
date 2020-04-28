@@ -8,34 +8,27 @@
     <link rel="icon" href="/images/favicons/favicon-48.png" sizes="48x48">
     <link rel="icon" href="/images/favicons/favicon-64.png" sizes="64x64">
     <link rel="icon" href="/images/favicons/favicon-128.png" sizes="128x128">
-    <title><%= title %></title>
+    <title>Error</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-      <div id="header">
-        <div id="headerLogo">
-          <img id="logoPng" src="/images/favicons/favicon-128.png">
-          <h1 id="bigName">MoNiSu's Blog</h1>
-        </div>>
-      </div>
-      <div id="nav">
-        <ul>
-          <li><a href="../">HOME</a></li>
-          <li><a href="../board">방명록</a></li>
-        </ul>
-      </div>
-      <div id="main">
-        <h1><%= title %></h1>
-        <h2><%= error %></h2>
-        <div>
-          <input type="button" class="button" onclick="location.href='../'" value="홈으로" />
-        </div>
-      </div>
-      </div>
-      <div id="footer"></div>
-    </div>
+    <header>
+      <img class="logoPng" src="/images/favicons/favicon-128.png">
+      <h1 class="bigName">MoNiSu's Blog</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../board">Board</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Error</h1>
+      <h2><%= error %></h2>
+      <button type="button">Home</button>
+    </main>
+    <footer></footer>
     <script type="text/javascript" src="/javascripts/index.js"></script>
   </body>
 </html>

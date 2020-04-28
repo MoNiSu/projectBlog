@@ -15,20 +15,20 @@ router.get('/', function (req, res) {
 		connection.query('SELECT * FROM board', function (err, results) {
 			if (err) {
 				console.log('error occurred', err);
-				res.render('error', { title: 'Error', error: err });
+				res.render('error', { error: err });
 			} else {
-				res.render('board', { title: 'Board', rows: results.reverse() });
+				res.render('board', { rows: results.reverse() });
 			}
 		});
 	} else {
-		res.redirect('./auth/login');
+		res.redirect('./auth/signin');
 	}
 });
 
 router.post('/', function (req, res) {
 	let today = new Date();
 	today.setHours(today.getHours() + 9);
-	
+
 	let board = {
 		username: req.session.username,
 		text: req.body.text,
@@ -38,7 +38,7 @@ router.post('/', function (req, res) {
 	connection.query('INSERT INTO board SET ?', board, function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
-			res.render('error', { title: 'Error', error: err });
+			res.render('error', { error: err });
 		} else {
 			console.log('board success : ', results);
 			res.redirect('/board');

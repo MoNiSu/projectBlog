@@ -10,7 +10,7 @@ const boardRouter = require('./routes/board');
 const app = express();
 const server = http.createServer(app);
 
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -33,11 +33,11 @@ app.use(function (err, req, res) {
 
 	res.status(err.status || 500);
 	// console.log("error occurred", err);
-	res.render('error', { title: 'Error', error: err });
+	res.render('error', { error: err });
 });
 
-server.listen(PORT, function () {
-	console.log(' server listening on ', PORT);
+server.listen(port, function () {
+	console.log(' server listening on ', port);
 });
 
 module.exports = app;

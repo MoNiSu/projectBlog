@@ -10,22 +10,22 @@ const connection = mysql.createPool(dbConfig);
 
 router.use(session(sessionAuth));
 
-router.get('/login', function (req, res) {
+router.get('/signin', function (req, res) {
 	if (req.session.username) {
 		res.redirect('../');
 	} else {
-		res.render('auth/login', { title: 'Login' });
+		res.render('auth/signin');
 	}
 });
 
-router.get('/logout', function (req, res) {
+router.get('/signout', function (req, res) {
 	if (req.session.username) {
 		req.session.destroy(function () {
 			req.session;
 			res.redirect('../');
 		});
 	} else {
-		res.render('error', { title: 'Error', error: '올바르지 않은 접근입니다.' });
+		res.render('error', { error: '올바르지 않은 접근입니다.' });
 	}
 });
 
@@ -33,34 +33,34 @@ router.get('/signup', function (req, res) {
 	if (req.session.username) {
 		res.redirect('../');
 	} else {
-		res.render('auth/signup', { title: 'Signup' });
+		res.render('auth/signup');
 	}
 });
 
-router.post('/login', function (req, res) {
-	let login = {
+router.post('/signin', function (req, res) {
+	let signin = {
 		userid: req.body.id,
 		password: req.body.password
 	};
 
-	connection.query('SELECT * FROM users WHERE userid = ?', [login.userid], function (err, results) {
+	connection.query('SELECT * FROM users WHERE userid = ?', [signin.userid], function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
 			res.render('error', { title: 'Error', error: err });
 		} else {
 			if (results.length > 0) {
 				let db = results[0];
-				if (db.password === login.password) {
-					console.log('login success : ', db);
+				if (db.password === signin.password) {
+					console.log('signin success : ', db);
 					req.session.username = db.username;
 					req.session.save(function () {
 						res.redirect('../');
 					});
 				} else {
-					res.render('error', { title: 'Login Error', error: '비밀번호가 올바르지 않습니다.' });
+					res.render('error', { error: '비밀번호가 올바르지 않습니다.' });
 				}
 			} else {
-				res.render('error', { title: 'Login Error', error: '아이디가 존재하지 않습니다.' });
+				res.render('error', { error: '아이디가 존재하지 않습니다.' });
 			}
 		}
 	});
@@ -69,7 +69,7 @@ router.post('/login', function (req, res) {
 router.post('/signup', function (req, res) {
 	let today = new Date();
 	today.setHours(today.getHours() + 9);
-	
+
 	let signup = {
 		userid: req.body.id,
 		username: req.body.username,
@@ -80,7 +80,7 @@ router.post('/signup', function (req, res) {
 	connection.query('INSERT INTO users SET ?', signup, function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
-			res.render('error', { title: 'Signup Error', error: '아이디 혹은 닉네임이 존재합니다.' });
+			res.render('error', { error: '아이디 혹은 닉네임이 존재합니다.' });
 		} else {
 			console.log('signup success : ', results);
 			req.session.username = signup.username;

@@ -8,56 +8,49 @@
     <link rel="icon" href="/images/favicons/favicon-48.png" sizes="48x48">
     <link rel="icon" href="/images/favicons/favicon-64.png" sizes="64x64">
     <link rel="icon" href="/images/favicons/favicon-128.png" sizes="128x128">
-    <title><%= title %></title>
+    <title>Board</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-      <div id="header">
-        <div id="headerLogo">
-          <img id="logoPng" src="/images/favicons/favicon-128.png">
-          <h1id="bigName">MoNiSu's Blog</h1>
-        </div>
-      </div>
-      <div id="nav">
-        <ul>
-          <li><a href="../">HOME</a></li>
-          <li><a href="../board">방명록</a></li>
-        </ul>
-      </div>
-      <div id="main">
-        <h1><%= title %></h1>
-        <form action="board" method="POST">
-          <div>
-            <input type="text" name="text" placeholder="text" required />
-            <input type="submit" class="button" value="남기기" />
-          </div>
-        </form>
-        <table>
-          <tr>
-            <th>번호</th>
-            <th>글쓴이</th>
-            <th>글</th>
-            <th>작성일</th>
-          </tr>
-          <% 
-            for(var i = 0; i<rows.length; i++) { 
-              let sum = (rows[i].idx % 10) + parseInt(rows[i].idx / 10);
-          %>
-          <tr>
-            <td><%= sum %></td>
-            <td><%= rows[i].username %></td>
-            <td><%= rows[i].text %></td>
-            <td><%= rows[i].created %></td>
-          </tr>
-          <% 
-            } 
-          %>
-        </table>
-      </div>
-      <div id="footer"></div>
-    </div>
+    <header>
+      <img src="/images/favicons/favicon-128.png">
+      <h1>MoNiSu's Blog</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../board">Board</a></li>
+      </ul>
+    </nav>
+    <main>
+      <form action="board" method="POST">
+        <input type="text" name="text" placeholder="TEXT" required />
+        <button type="submit">Post</button>
+      </form>
+      <table>
+        <tr>
+          <th>번호</th>
+          <th>글쓴이</th>
+          <th>글</th>
+          <th>작성일</th>
+        </tr>
+        <% 
+          for(var i = 0; i < rows.length; i++) { 
+            let sum = (rows[i].idx % 10) + parseInt(rows[i].idx / 10);
+        %>
+        <tr>
+          <td><%= sum %></td>
+          <td><%= rows[i].username %></td>
+          <td><%= rows[i].text %></td>
+          <td><%= rows[i].created %></td>
+        </tr>
+        <% 
+          } 
+        %>
+      </table>
+    </main>
+    <footer></footer>
     <script type="text/javascript" src="/javascripts/index.js"></script>
   </body>
 </html>
