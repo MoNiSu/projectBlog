@@ -12,7 +12,7 @@ router.use(session(sessionAuth));
 
 router.get('/', function (req, res) {
 	if (req.session.username) {
-		res.redirect('/1');
+		res.redirect('./board/1');
 	} else {
 		res.redirect('./auth/signin');
 	}
