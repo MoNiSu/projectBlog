@@ -29,22 +29,22 @@
         <button type="submit">Post</button>
       </form>
       <table>
-        <tr>
+        <thead>
           <th>번호</th>
           <th>글쓴이</th>
           <th>글</th>
           <th>작성일</th>
-        </tr>
+        </thead>
         <% 
           for(var i = 0; i < rows.length; i++) { 
             let sum = (rows[i].idx % 10) + parseInt(rows[i].idx / 10);
         %>
-        <tr>
+        <tbody>
           <td><%= sum %></td>
           <td><%= rows[i].username %></td>
           <td><%= rows[i].text %></td>
           <td><%= rows[i].created %></td>
-        </tr>
+        </tbody>
         <% 
           } 
         %>

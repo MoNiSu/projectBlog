@@ -69,11 +69,12 @@ nav ul li a:hover {
 
 main {
   height: 75vh;
-  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y:auto;
+  overflow-x:hidden;
 }
 
 footer {
@@ -142,7 +143,7 @@ form {
 }
 
 table {
-  width: 50vw;
+  width: 70vw;
   margin: 20px;
   border-radius: 5px;
   border-collapse: collapse;
@@ -156,10 +157,6 @@ thead {
 
 tbody {
   display: table-row-group;
-}
-
-tfoot {
-  display: table-footer-group;
 }
 
 tr {
