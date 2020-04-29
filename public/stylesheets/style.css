@@ -145,13 +145,13 @@ form {
 table {
   width: 70vw;
   margin: 20px;
-  border-radius: 5px;
   border-collapse: collapse;
   text-align: center;
   display: table;
 }
 
 thead {
+  background-color: rgba(0, 0, 0, 0.1);
   display: table-header-group;
 }
 

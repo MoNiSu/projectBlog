@@ -12,14 +12,24 @@ router.use(session(sessionAuth));
 
 router.get('/', function (req, res) {
 	if (req.session.username) {
-		connection.query('SELECT * FROM board', function (err, results) {
-			if (err) {
-				console.log('error occurred', err);
-				res.render('error', { error: err });
-			} else {
-				res.render('board', { rows: results.reverse() });
-			}
-		});
+		res.redirect('/1');
+	} else {
+		res.redirect('./auth/signin');
+	}
+});
+
+router.get('/:page', function (req, res) {
+	if (req.session.username) {
+		connection.query(
+			`SELECT * FROM board WHERE idx BETWEEN ${(req.params.page - 1) * 10 + 1} AND ${(req.params.page * 10 - 1) * 10 + 1}`,
+			function (err, results) {
+				if (err) {
+					console.log('error occured', err);
+					res.render('error', { error: err });
+				} else {
+					res.render('board', { rows: results.reverse() });
+				}
+			});
 	} else {
 		res.redirect('./auth/signin');
 	}

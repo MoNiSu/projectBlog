@@ -21,14 +21,14 @@ app.get('/', function (req, res) {
 	board: 'board', { title: 'Board', rows: 'A' }
 	signin: 'auth/signin'
 	signup: 'auth/signup' */
-	res.render('auth/signin');
+	res.redirect('/1');
 	// console.log(req.get('host'));
 });
 
-app.get('/bb', function (req, res) {
-	res.redirect('/');
+app.get('/:page', function (req, res) {
+	console.log(req.params.page);
+	res.render('board', { rows: '' });
 });
-
 server.listen(port, function () {
 	console.log(' server listening on port ', port);
 });
