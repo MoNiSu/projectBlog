@@ -8,7 +8,6 @@ head {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 14px;
   height: 100vh;
   background-color: rgb(246, 249, 252);
   display: flex;
@@ -55,8 +54,8 @@ nav ul li a {
   -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  color: rgb(0, 0, 0);
-  font-size: 18px;
+  padding: 0 0.3vw;
+  font-size: 1.1rem;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -83,13 +82,13 @@ footer {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: bold;
   margin: 0.5vh 0.5vw;
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 1.8rem;
   font-weight: bold;
   margin: 0.5vh 0.5vw;
 }
@@ -172,4 +171,29 @@ th {
 td {
   border: 1px solid rgb(0, 0, 0);
   display: table-cell;
+}
+
+.boardList {
+  margin: 0.1vh 1vw;
+  list-style: none;
+  display: flex;
+}
+
+.boardList li {
+  margin: 0 0.5vw;
+  display: flex;
+} 
+
+.boardList li a {
+  padding: 0 0.3vw;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boardList li a:hover {
+  text-decoration: underline;
 }

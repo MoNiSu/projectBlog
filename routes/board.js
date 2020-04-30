@@ -20,16 +20,19 @@ router.get('/', function (req, res) {
 
 router.get('/:page', function (req, res) {
 	if (req.session.username) {
-		connection.query(
-			`SELECT * FROM board WHERE idx BETWEEN ${(req.params.page - 1) * 10 + 1} AND ${(req.params.page * 10 - 1) * 10 + 1}`,
-			function (err, results) {
-				if (err) {
-					console.log('error occured', err);
-					res.render('error', { error: err });
+		connection.query('SELECT * FROM board', function (err, results) {
+			if (err) {
+				console.log('error occured', err);
+				res.render('error', { error: err });
+			} else {
+				let rows = results.reverse();
+				if (!rows[req.params.page * 10 - 1]) {
+					res.render('board', { rows: rows.slice((req.params.page - 1) * 10, rows.length), list: rows.length, nowPage: req.params.page });
 				} else {
-					res.render('board', { rows: results.reverse() });
+					res.render('board', { rows: rows.slice((req.params.page - 1) * 10, req.params.page * 10), list: rows.length, nowPage: req.params.page });
 				}
-			});
+			}
+		});
 	} else {
 		res.redirect('./auth/signin');
 	}

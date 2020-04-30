@@ -36,7 +36,7 @@
           <th>작성일</th>
         </thead>
         <% 
-          for(var i = 0; i < rows.length; i++) { 
+          for(let i = 0; i < rows.length; i++) { 
             let sum = (rows[i].idx % 10) + parseInt(rows[i].idx / 10);
         %>
         <tbody>
@@ -49,7 +49,24 @@
           } 
         %>
       </table>
-      <button type="button" onclick="location.href='./'">Home</button>
+      <ul class="boardList">
+        <%
+          for(let j = 1; j <= list / 10 + 1; j++) {
+            let fontColor = 'black';
+            if (`${j}` === nowPage) {
+              fontColor = 'blue';
+            }
+        %>
+        <li>
+          <a onclick="location='./<%= j %>'" style="color: <%= fontColor %> ">
+            <%= j %>
+          </a>
+        </li>
+        <%
+        }
+        %>
+      </ul>
+      <button type="button" onclick="location.href='../'">Home</button>
     </main>
     <footer></footer>
     <script type="text/javascript" src="/javascripts/index.js"></script>
