@@ -57,6 +57,7 @@ nav ul li a {
   padding: 0 0.3vw;
   font-size: 1.1rem;
   font-weight: bold;
+  text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
