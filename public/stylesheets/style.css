@@ -56,6 +56,7 @@ nav ul li a {
   transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   padding: 0 0.3vw;
   font-size: 1.1rem;
+  text-decoration: none;
   color: rgb(0, 0, 0);
   font-weight: bold;
   display: flex;
