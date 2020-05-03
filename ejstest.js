@@ -16,18 +16,18 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
-	/* index: 'index', { username: 'A', authLocation: 'signin', auth: 'Signin' }
-	error: 'error', { title: 'Error', error: 'err' }
-	board: 'board', { title: 'Board', rows: 'A' }
-	signin: 'auth/signin'
-	signup: 'auth/signup' */
+	/* index: 'pages/index', { username: 'A', authLocation: 'signin', auth: 'Signin' }
+	error: 'pages/error', { title: 'Error', error: 'err' }
+	board: 'pages/board', { title: 'Board', rows: 'A' }
+	signin: 'pages/signin', { title: 'auth' }
+	signup: 'pages/signup', { title: 'auth' } */
 	res.redirect('/1');
 	// console.log(req.get('host'));
 });
 
 app.get('/:page', function (req, res) {
 	console.log(req.params.page);
-	res.render('board', { rows: '', list: 61, nowPage: req.params.page });
+	res.render('pages/board', { title: 'Board', rows: '', list: 61, nowPage: req.params.page });
 });
 server.listen(port, function () {
 	console.log(' server listening on port ', port);

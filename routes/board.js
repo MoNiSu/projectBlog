@@ -23,13 +23,13 @@ router.get('/:page', function (req, res) {
 		connection.query('SELECT * FROM board', function (err, results) {
 			if (err) {
 				console.log('error occured', err);
-				res.render('error', { error: err });
+				res.render('pages/error', { title: 'Error', error: err });
 			} else {
 				let rows = results.reverse();
 				if (!rows[req.params.page * 10 - 1]) {
-					res.render('board', { rows: rows.slice((req.params.page - 1) * 10, rows.length), list: rows.length, nowPage: req.params.page });
+					res.render('pages/board', { title: 'Board', rows: rows.slice((req.params.page - 1) * 10, rows.length), list: rows.length, nowPage: req.params.page });
 				} else {
-					res.render('board', { rows: rows.slice((req.params.page - 1) * 10, req.params.page * 10), list: rows.length, nowPage: req.params.page });
+					res.render('pages/board', { title: 'Board', rows: rows.slice((req.params.page - 1) * 10, req.params.page * 10), list: rows.length, nowPage: req.params.page });
 				}
 			}
 		});
@@ -51,7 +51,7 @@ router.post('/', function (req, res) {
 	connection.query('INSERT INTO board SET ?', board, function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
-			res.render('error', { error: err });
+			res.render('pages/error', { title: 'Error', error: err });
 		} else {
 			console.log('board success : ', results);
 			res.redirect('/board');

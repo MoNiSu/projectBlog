@@ -33,7 +33,7 @@ app.use(function (err, req, res) {
 
 	res.status(err.status || 500);
 	// console.log("error occurred", err);
-	res.render('error', { error: err });
+	res.render('pages/error', { title: 'Error', error: err });
 });
 
 server.listen(port, function () {

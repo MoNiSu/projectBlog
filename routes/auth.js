@@ -14,7 +14,7 @@ router.get('/signin', function (req, res) {
 	if (req.session.username) {
 		res.redirect('../');
 	} else {
-		res.render('auth/signin');
+		res.render('pages/signin', { title: 'Sign In' });
 	}
 });
 
@@ -25,7 +25,7 @@ router.get('/signout', function (req, res) {
 			res.redirect('../');
 		});
 	} else {
-		res.render('error', { error: '올바르지 않은 접근입니다.' });
+		res.render('pages/error', { title: 'Error', error: '올바르지 않은 접근입니다.' });
 	}
 });
 
@@ -33,7 +33,7 @@ router.get('/signup', function (req, res) {
 	if (req.session.username) {
 		res.redirect('../');
 	} else {
-		res.render('auth/signup');
+		res.render('pages/signup', { title: 'Sign Up' });
 	}
 });
 
@@ -46,7 +46,7 @@ router.post('/signin', function (req, res) {
 	connection.query('SELECT * FROM users WHERE userid = ?', [signin.userid], function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
-			res.render('error', { title: 'Error', error: err });
+			res.render('pages/error', { title: 'Error', error: err });
 		} else {
 			if (results.length > 0) {
 				let db = results[0];
@@ -57,10 +57,10 @@ router.post('/signin', function (req, res) {
 						res.redirect('../');
 					});
 				} else {
-					res.render('error', { error: '비밀번호가 올바르지 않습니다.' });
+					res.render('pages/error', { title: 'Error', error: '비밀번호가 올바르지 않습니다.' });
 				}
 			} else {
-				res.render('error', { error: '아이디가 존재하지 않습니다.' });
+				res.render('pages/error', { title: 'Error', error: '아이디가 존재하지 않습니다.' });
 			}
 		}
 	});
@@ -80,7 +80,7 @@ router.post('/signup', function (req, res) {
 	connection.query('INSERT INTO users SET ?', signup, function (err, results) {
 		if (err) {
 			console.log('error occurred', err);
-			res.render('error', { error: '아이디 혹은 닉네임이 존재합니다.' });
+			res.render('pages/error', { title: 'Error', error: '아이디 혹은 닉네임이 존재합니다.' });
 		} else {
 			console.log('signup success : ', results);
 			req.session.username = signup.username;

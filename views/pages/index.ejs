@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../partials/head.ejs'); %>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <header>
+      <%- include('../partials/header.ejs'); %>
+    </header>
+    <nav>
+      <%- include('../partials/nav.ejs'); %>
+    </nav>
+    <main>
+      <h1>어서오세요! <%= username %></h1>
+      <button type="button" onclick="location.href='./auth/<%= authLocation %>'"><%= auth %></button>
+    </main>
+    <footer>
+      <%- include('../partials/footer.ejs'); %>
+    </footer>
+    <script type="text/javascript" src="/javascripts/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../partials/head.ejs'); %>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <header>
+      <%- include('../partials/header.ejs'); %>
+    </header>
+    <nav>
+      <%- include('../partials/nav.ejs'); %>
+    </nav>
+    <main>
+      <form action="./" method="POST">
+        <input type="text" name="text" placeholder="TEXT" required />
+        <button type="submit">Post</button>
+      </form>
+      <table>
+        <thead>
+          <th>번호</th>
+          <th>글쓴이</th>
+          <th>글</th>
+          <th>작성일</th>
+        </thead>
+        <% 
+          for(let i = 0; i < rows.length; i++) { 
+            let sum = (rows[i].idx % 10) + parseInt(rows[i].idx / 10);
+        %>
+        <tbody>
+          <td><%= sum %></td>
+          <td><%= rows[i].username %></td>
+          <td><%= rows[i].text %></td>
+          <td><%= rows[i].created %></td>
+        </tbody>
+        <% 
+          } 
+        %>
+      </table>
+      <ul class="boardList">
+        <%
+          for(let j = 1; j <= list / 10 + 1; j++) {
+            let fontColor = 'black';
+            if (`${j}` === nowPage) {
+              fontColor = 'blue';
+            }
+        %>
+        <li>
+          <a onclick="location='./<%= j %>'" style="color: <%= fontColor %> ">
+            <%= j %>
+          </a>
+        </li>
+        <%
+        }
+        %>
+      </ul>
+      <button type="button" onclick="location.href='../'">Home</button>
+    </main>
+    <footer>
+      <%- include('../partials/footer.ejs'); %>
+    </footer>
+    <script type="text/javascript" src="/javascripts/index.js"></script>
+  </body>
+</html>
