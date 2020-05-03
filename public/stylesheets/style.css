@@ -15,7 +15,9 @@ body {
 }
 
 header {
+  min-height: 80px;
   height: 10vh;
+  max-height: 120px;
   border-top: 5px;
   border-top-color: rgb(144, 238, 144);
   border-top-style: solid;
@@ -25,36 +27,42 @@ header {
 }
 
 header img{
+  min-height: 50px;
   height: 9vh;
-  margin: 0 0.5vw;
+  max-height: 80px;
+  margin: 0 5px;
 }
 
 nav {
+  min-height: 40px;
   height: 5vh;
+  max-height: 50px;
   border-top: 1px solid rgb(0, 0, 0);
   border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 nav ul {
-  height: 5vh;
-  margin: 0 1vw;
+  height: 100%;
+  margin: 0 15px;
   list-style: none;
   display: flex;
 }
 
 nav ul li {
-  margin: 0 0.5vw;
+  margin: 0 5px;
   display: flex;
 } 
 
 nav ul li a {
+  min-width: 40px;
   width: 4vw;
+  max-width: 50px;
   -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  padding: 0 0.3vw;
+  padding: 0 5px;
   font-size: 1.1rem;
   text-decoration: none;
   color: rgb(0, 0, 0);
@@ -69,7 +77,9 @@ nav ul li a:hover {
 }
 
 main {
+  min-height: 500px;
   height: 75vh;
+  max-height: 1100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,20 +89,22 @@ main {
 }
 
 footer {
+  min-height: 100px;
   height: 10vh;
+  max-height: 120px;
   border-top: 1px solid rgb(0, 0, 0);
 }
 
 h1 {
   font-size: 2rem;
   font-weight: bold;
-  margin: 0.5vh 0.5vw;
+  margin: 3px 3px;
 }
 
 h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  margin: 0.5vh 0.5vw;
+  margin: 3px 3px;
 }
 
 input {
@@ -101,7 +113,7 @@ input {
   -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  margin: 0.1vh 0.1vw;
+  margin: 3px 3px;
   border: 1px solid rgb(0, 0, 0);
   display: flex;
   justify-content: center;
@@ -113,14 +125,18 @@ input:hover, input:focus {
 }
 
 button {
+  min-width: 80px;
   width: 10vh;
+  max-width: 100px;
+  min-height: 30px;
   height: 3vh;
+  max-height: 35px;
   -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  margin: 0.1vh 0.1vw;
+  margin: 3px 3px;
   border: 1px solid rgb(0, 0, 0);
 	border-radius: 5px;
   color: rgb(0, 0, 0);
@@ -134,7 +150,7 @@ button:hover {
 }
 
 form {
-  padding: 1vh 1vw;
+  padding: 10px 10px;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 5px;
   display: flex;
@@ -144,7 +160,9 @@ form {
 }
 
 table {
+  min-width: 350px;
   width: 70vw;
+  max-width: 1200px;
   margin: 20px;
   border-collapse: collapse;
   text-align: center;
@@ -176,18 +194,18 @@ td {
 }
 
 .boardList {
-  margin: 0.1vh 1vw;
+  margin: 10px 10px;
   list-style: none;
   display: flex;
 }
 
 .boardList li {
-  margin: 0 0.5vw;
+  margin: 0 5px;
   display: flex;
 } 
 
 .boardList li a {
-  padding: 0 0.3vw;
+  padding: 0 3px;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
