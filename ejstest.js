@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 
 app.get('/:page', function (req, res) {
 	console.log(req.params.page);
-	res.render('pages/board', { title: 'Board', rows: '', list: 61, nowPage: req.params.page });
+	res.render('pages/board', { title: 'Board', rows: '', list: 81, nowPage: req.params.page });
 });
 server.listen(port, function () {
 	console.log(' server listening on port ', port);
