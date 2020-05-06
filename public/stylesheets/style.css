@@ -161,8 +161,8 @@ form {
 
 table {
   min-width: 350px;
-  width: 70vw;
-  max-width: 1200px;
+  width: 50vw;
+  max-width: 800px;
   margin: 10px;
   border-collapse: collapse;
   text-align: center;
