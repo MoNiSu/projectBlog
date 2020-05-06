@@ -21,8 +21,9 @@ app.get('/', function (req, res) {
 	board: 'pages/board', { title: 'Board', rows: 'A' }
 	signin: 'pages/signin', { title: 'auth' }
 	signup: 'pages/signup', { title: 'auth' } */
-	res.redirect('/1');
+	// res.redirect('/1');
 	// console.log(req.get('host'));
+	res.render('pages/ladder', { title: 'Ladder' });
 });
 
 app.get('/:page', function (req, res) {

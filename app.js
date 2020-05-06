@@ -3,9 +3,10 @@ const http = require('http');
 const path = require('path');
 // const createError = require('http-errors');
 
-const indexRouter = require('./routes/index');
-const authRouter = require('./routes/auth');
-const boardRouter = require('./routes/board');
+const indexRouter = require('./routes/index.js');
+const authRouter = require('./routes/auth.js');
+const boardRouter = require('./routes/board.js');
+const ladderRouter = require('./routes/ladder.js');
 
 const app = express();
 const server = http.createServer(app);
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/board', boardRouter);
+app.use('/ladder', ladderRouter);
 
 /* app.use(function (req, res, next) {
 	next(createError(404));

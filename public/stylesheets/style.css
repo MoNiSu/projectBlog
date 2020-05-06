@@ -217,3 +217,19 @@ td {
 .boardList li a:hover {
   text-decoration: underline;
 }
+
+canvas {
+  background-color: rgb(255, 255, 255);
+}
+
+.ladder {
+  min-width: 350px;
+  width: 50vw;
+  max-width: 800px;
+  min-height: 300px;
+  height: 50vh;
+  max-height: 800px;
+  margin: 10px 0;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
