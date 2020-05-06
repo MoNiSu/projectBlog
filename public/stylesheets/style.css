@@ -163,9 +163,6 @@ table {
   min-width: 350px;
   width: 70vw;
   max-width: 1200px;
-  min-height: 300px;
-  height: 40vh;
-  max-height: 600px;
   margin: 10px;
   border-collapse: collapse;
   text-align: center;
@@ -179,6 +176,7 @@ thead {
 
 tbody {
   display: table-row-group;
+  font-size: 0.8rem;
 }
 
 tr {
