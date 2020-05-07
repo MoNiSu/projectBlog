@@ -12,13 +12,28 @@
       <%- include('../partials/nav.ejs'); %>
     </nav>
     <main>
-      <canvas class="ladder">
+      <canvas id="jsLadder" class="ladder" width="750px" height="350px">
+        Your browser does not support the HTML5 canvas tag.
       </canvas>
       <button type="button" onclick="location.href='../'">Home</button>
+      <div id="jsModal" class="modal">
+        <div class="modalOverlay"></div>
+        <div class="modalContent">
+          <h2>Set People</h2>
+          (2 ~ 8)
+          <div class="setPeople">
+            <button id="jsDownBtn" class="downBtn"></button>
+            <div id="jsPeopleNumber" class="peopleNumber"></div>
+            <button id="jsUpBtn" class="upBtn"></button>
+          </div>
+          <button id="jsSubmit">Submit</button>
+        </div>
+      </div>
     </main>
     <footer>
       <%- include('../partials/footer.ejs'); %>
     </footer>
     <script type="text/javascript" src="/javascripts/index.js"></script>
+    <script type="text/javascript" src="/javascripts/ladder.js"></script>
   </body>
 </html>

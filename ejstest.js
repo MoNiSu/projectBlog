@@ -5,7 +5,7 @@ const path = require('path');
 
 const dbConfig = require('./config/database.js');
 
-const connection = mysql.createConnection(dbConfig);
+const connection = mysql.createPool(dbConfig);
 
 const app = express();
 const server = http.createServer(app);
@@ -20,24 +20,15 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-connection.connect(function (err) {
-	if (err) {
-		console.error('error connecting: ' + err.stack);
-		return;
-	}
-
-	console.log('connected as id ' + connection.threadId);
-});
-
 app.get('/', function (req, res) {
 	/* index: 'pages/index', { username: 'A', authLocation: 'signin', auth: 'Signin' }
 	error: 'pages/error', { title: 'Error', error: 'err' }
 	board: 'pages/board', { title: 'Board', rows: 'A' }
 	signin: 'pages/signin', { title: 'auth' }
 	signup: 'pages/signup', { title: 'auth' } */
-	res.redirect('/1');
+	// res.redirect('/1');
 	// console.log(req.get('host'));
-	// res.render('pages/ladder', { title: 'Ladder' });
+	res.render('pages/ladder', { title: 'Ladder' });
 });
 
 app.get('/:page', function (req, res) {
