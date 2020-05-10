@@ -228,6 +228,23 @@ canvas {
   background-color: rgb(255, 255, 255);
 }
 
+.canvasCover {
+  width: 750px;
+  height: 350px;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 0px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.canvasCover input:hover {
+  box-shadow: none;
+}
+
+.canvasCover input:focus {
+  box-shadow: none;
+}
+
 .ladder {
   margin: 10px 0;
   border: 2px solid rgba(0, 0, 0, 0.3);

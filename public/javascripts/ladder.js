@@ -4,6 +4,7 @@ const downBtn = document.getElementById('jsDownBtn');
 const upBtn = document.getElementById('jsUpBtn');
 const submit = document.getElementById('jsSubmit');
 const canvas = document.getElementById('jsLadder');
+const canvasCover = document.getElementById('jsLadderCover');
 
 const ctx = canvas.getContext('2d');
 
@@ -17,7 +18,6 @@ peopleNumber.innerHTML = people;
 
 function drawLadder () {
 	let line = 100;
-
 	let xPlus = Math.floor(550 / (people - 1));
 
 	let ladderBridgeStatus = [];
@@ -31,17 +31,21 @@ function drawLadder () {
 
 		let ladderBridge = 0;
 
+		let oneSpaceBridge = 0;
+
 		for (let i = 1; i <= 5; i++) {
 			y += 30;
 			ctx.lineTo(x, y);
 
-			if (ladderBridge >= 3) {
+			if (ladderBridge >= 3 || oneSpaceBridge === 1) {
 				ladderBridgeStatus[x + y + i] = 0;
+				++oneSpaceBridge;
 			} else {
 				if (percent(10) <= 6) {
 					ctx.lineTo(x + xPlus, y);
 					ctx.moveTo(x, y);
 					++ladderBridge;
+					++oneSpaceBridge;
 					ladderBridgeStatus[x + y + i] = 1;
 				} else {
 					ladderBridgeStatus[x + y + i] = 0;
@@ -180,6 +184,55 @@ function drawLadder () {
 	}
 }
 
+function canvasTextInput () {
+	let line = 100;
+	let xPlus = Math.floor(550 / (people - 1));
+
+	function drawText (text, x, y) {
+		ctx.textBaseline = 'center';
+		ctx.textAlign = 'left';
+		ctx.font = '16px sans-serif';
+		ctx.fillText(text, x + 5, y + 20);
+	}
+
+	function addInput (x, y, num) {
+		let canvasInput = document.createElement('input');
+
+		if (num === 1) {
+			canvasInput.left = x;
+			canvasInput.top = 40;
+		} else if (num === 2) {
+			canvasInput.left = x;
+			canvasInput.top = 280;
+		}
+
+		canvasInput.type = 'text';
+		canvasInput.maxLength = '4';
+		canvasInput.style.width = '58px';
+		canvasInput.style.height = '30px';
+		canvasInput.style.border = 'none';
+		canvasInput.style.position = 'fixed';
+		canvasInput.style.marginLeft = `${x + 2}px`;
+		canvasInput.style.marginTop = `${y}px`;
+
+		canvasInput.addEventListener('keydown', function (e) {
+			if (e.keyCode === 13) {
+				drawText(this.value, this.left, this.top);
+				canvasCover.removeChild(this);
+			}
+		});
+
+		canvasCover.appendChild(canvasInput);
+	}
+
+	canvasCover.classList.remove('hidden');
+	for (let l = 1; l <= people; l++) {
+		addInput(line - 30, 40, 1);
+		addInput(line - 30, 280, 2);
+		line += xPlus;
+	}
+}
+
 downBtn.addEventListener('click', function () {
 	if (people >= 3) {
 		--people;
@@ -201,4 +254,5 @@ upBtn.addEventListener('click', function () {
 submit.addEventListener('click', function () {
 	modal.classList.add('hidden');
 	drawLadder();
+	canvasTextInput();
 });
