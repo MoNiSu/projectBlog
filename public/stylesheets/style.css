@@ -98,6 +98,7 @@ footer {
   height: 10vh;
   max-height: 120px;
   border-top: 1px solid rgb(0, 0, 0);
+  padding: 5px;
 }
 
 h1 {
@@ -107,9 +108,19 @@ h1 {
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
   margin: 3px 3px;
+}
+
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 3px 3px;
+}
+
+a {
+  cursor: pointer;
 }
 
 input {
@@ -214,7 +225,6 @@ td {
   padding: 0 3px;
   font-size: 1.1rem;
   font-weight: bold;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

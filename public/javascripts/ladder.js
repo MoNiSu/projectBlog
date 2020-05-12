@@ -9,22 +9,50 @@ const canvasCover = document.getElementById('jsLadderCover');
 const ctx = canvas.getContext('2d');
 
 function percent (num) {
-	return Math.round(Math.random() * num);
+	return Math.ceil(Math.random() * num);
 }
 
 var people = 2;
 
 peopleNumber.innerHTML = people;
 
+var ladderStatus = false;
+var ladderBridgeStatus = [];
+var ladderButtonStatus = [];
+
+function drawRect () {
+	let line = 100;
+	let xPlus = Math.floor(550 / (people - 1));
+
+	function ladderLineTemp (height) {
+		ctx.lineWidth = 1;
+
+		ctx.beginPath();
+		ctx.moveTo(height, 80);
+		ctx.lineTo(height, 270);
+		ctx.stroke();
+
+		ctx.lineWidth = 3;
+	}
+
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+
+	for (let i = 1; i <= people; i++) {
+		ctx.strokeRect(line - 30, 40, 60, 30);
+		ladderLineTemp(line);
+		ctx.strokeRect(line - 30, 280, 60, 30);
+
+		line += xPlus;
+	}
+}
+
 function drawLadder () {
 	let line = 100;
 	let xPlus = Math.floor(550 / (people - 1));
 
-	let ladderBridgeStatus = [];
-
 	function ladderLineFirst (x) {
 		ctx.beginPath();
-
 		ctx.moveTo(x, 80);
 
 		let y = 85;
@@ -37,99 +65,67 @@ function drawLadder () {
 			y += 30;
 			ctx.lineTo(x, y);
 
-			if (ladderBridge >= 3 || oneSpaceBridge === 1) {
-				ladderBridgeStatus[x + y + i] = 0;
-				++oneSpaceBridge;
-			} else {
-				if (percent(10) <= 6) {
+			if (ladderBridge < 3 && oneSpaceBridge !== 1) {
+				if (percent(10) <= 7) {
 					ctx.lineTo(x + xPlus, y);
 					ctx.moveTo(x, y);
 					++ladderBridge;
 					++oneSpaceBridge;
-					ladderBridgeStatus[x + y + i] = 1;
-				} else {
-					ladderBridgeStatus[x + y + i] = 0;
+					ladderBridgeStatus[x + y + i] = true;
 				}
-			}
-		}
-
-		if (ladderBridge === 0) {
-			let y2 = 85;
-
-			for (let i = 1; i <= 5; i++) {
-				y2 += 30;
-
-				if (ladderBridge >= 2) {
-					break;
-				} else {
-					if (ladderBridgeStatus[x + y2 + i] === 0) {
-						ctx.moveTo(x, y2);
-						ctx.lineTo(x + xPlus, y2);
-						ctx.moveTo(x, y2);
-						++ladderBridge;
-						ladderBridgeStatus[x + y2 + i] = 1;
-
-						y2 += 30;
-					}
-				}
+			} else if (oneSpaceBridge === 1) {
+				++oneSpaceBridge;
 			}
 		}
 
 		ctx.moveTo(x, 235);
 		ctx.lineTo(x, 270);
 		ctx.stroke();
+
+		if (ladderBridge === 0) {
+			ctx.beginPath();
+
+			let y = 115;
+
+			for (let i = 1; i <= 4; i++) {
+				if (ladderBridge < 2 && oneSpaceBridge !== 1) {
+					if (!ladderBridgeStatus[x + y + i]) {
+						ctx.moveTo(x, y);
+						ctx.lineTo(x + xPlus, y);
+						++ladderBridge;
+						++oneSpaceBridge;
+						ladderBridgeStatus[x + y + i] = true;
+					}
+				} else if (oneSpaceBridge === 1) {
+					++oneSpaceBridge;
+				}
+
+				y += 30;
+			}
+
+			ctx.stroke();
+		}
 	}
 
 	function ladderLine (x) {
 		ctx.beginPath();
-
 		ctx.moveTo(x, 80);
 
 		let y = 85;
 
 		let ladderBridge = 0;
 
-		for (let j = 1; j <= 5; j++) {
+		for (let i = 1; i <= 5; i++) {
 			y += 30;
 			ctx.lineTo(x, y);
 
-			if (ladderBridgeStatus[x - xPlus + y + j] === 1) {
-				ladderBridgeStatus[x + y + j] = 0;
-			} else {
-				if (ladderBridge >= 3) {
-					ladderBridgeStatus[x + y + j] = 0;
-				} else {
-					if (percent(10) <= 4) {
+			if (ladderBridge < 3) {
+				if (!ladderBridgeStatus[x - xPlus + y + i]) {
+					if (percent(10) <= 5) {
 						ctx.lineTo(x + xPlus, y);
 						ctx.moveTo(x, y);
 						++ladderBridge;
-						ladderBridgeStatus[x + y + j] = 1;
-					} else {
-						ladderBridgeStatus[x + y + j] = 0;
-					}
-				}
-			}
-		}
-
-		if (ladderBridge === 0) {
-			let y2 = 85;
-
-			for (let j = 1; j <= 5; j++) {
-				y2 += 30;
-
-				if (ladderBridge >= 2) {
-					break;
-				} else {
-					if (ladderBridgeStatus[x - xPlus + y2 + j] === 0) {
-						if (ladderBridgeStatus[x + y2 + j] === 0) {
-							ctx.moveTo(x, y2);
-							ctx.lineTo(x + xPlus, y2);
-							ctx.moveTo(x, y2);
-							++ladderBridge;
-							ladderBridgeStatus[x + y2 + j] = 1;
-
-							y2 += 30;
-						}
+						ladderBridgeStatus[x + y + i] = true;
 					}
 				}
 			}
@@ -138,6 +134,34 @@ function drawLadder () {
 		ctx.moveTo(x, 235);
 		ctx.lineTo(x, 270);
 		ctx.stroke();
+
+		if (ladderBridge === 0) {
+			ctx.beginPath();
+
+			let y = 115;
+
+			let oneSpaceBridge = 0;
+
+			for (let i = 1; i <= 4; i++) {
+				if (ladderBridge < 2 && oneSpaceBridge !== 1) {
+					if (!ladderBridgeStatus[x - xPlus + y + i]) {
+						if (!ladderBridgeStatus[x + y + i]) {
+							ctx.moveTo(x, y);
+							ctx.lineTo(x + xPlus, y);
+							++ladderBridge;
+							++oneSpaceBridge;
+							ladderBridgeStatus[x + y + i] = true;
+						}
+					}
+				} else if (oneSpaceBridge === 1) {
+					++oneSpaceBridge;
+				}
+
+				y += 30;
+			}
+
+			ctx.stroke();
+		}
 	}
 
 	function ladderLineLast (height) {
@@ -147,40 +171,114 @@ function drawLadder () {
 		ctx.stroke();
 	}
 
+	ctx.lineWidth = 1;
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
 
-	function drawRect (xStart, yStart, width, height) {
-		ctx.lineWidth = 3;
-		ctx.strokeRect(xStart, yStart, width, height);
-		ctx.lineWidth = 1;
-	}
-
-	for (let k = 1; k <= people; k++) {
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = 'rgb(0, 0, 0)';
-
-		if (k === 1) {
-			drawRect(line - 30, 40, 60, 30);
-
+	for (let i = 1; i <= people; i++) {
+		if (i === 1) {
 			ladderLineFirst(line);
 
-			drawRect(line - 30, 280, 60, 30);
-
 			line += xPlus;
-		} else if (k < people) {
-			drawRect(line - 30, 40, 60, 30);
-
+		} else if (i < people) {
 			ladderLine(line);
 
-			drawRect(line - 30, 280, 60, 30);
-
 			line += xPlus;
-		} else if (k === people) {
-			drawRect(line - 30, 40, 60, 30);
-
+		} else if (i === people) {
 			ladderLineLast(line);
-
-			drawRect(line - 30, 280, 60, 30);
 		}
+	}
+
+	ladderStatus = true;
+}
+
+function ladderBridgeColor (x, num) { // 70, 16
+	if (ladderStatus && !ladderButtonStatus[num]) {
+		let red;
+		let green;
+		let blue;
+
+		switch (num) {
+		case 1:
+			// RED
+			red = 255;
+			green = 0;
+			blue = 0;
+			break;
+		case 3:
+			// CYAN
+			red = 0;
+			green = 255;
+			blue = 255;
+			break;
+		case 5:
+			// ORANGE
+			red = 255;
+			green = 128;
+			blue = 0;
+			break;
+		case 7:
+			// DARK BLUE
+			red = 0;
+			green = 0;
+			blue = 128;
+			break;
+		case 9:
+			// YELLOW
+			red = 255;
+			green = 255;
+			blue = 0;
+			break;
+		case 11:
+			// BLUE
+			red = 0;
+			green = 0;
+			blue = 255;
+			break;
+		case 13:
+			// GREEN
+			red = 0;
+			green = 255;
+			blue = 0;
+			break;
+		case 15:
+			// PINK
+			red = 255;
+			green = 0;
+			blue = 255;
+			break;
+		}
+
+		x += 30;
+
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = `rgb(${red}, ${green}, ${blue})`;
+		ctx.strokeRect(x - 30, 40, 60, 30);
+
+		ctx.beginPath();
+		ctx.moveTo(x, 80);
+		ctx.lineTo(x, 85);
+
+		let y = 85;
+		let xPlus = Math.floor(550 / (people - 1));
+
+		for (let i = 1; i <= 5; i++) {
+			y += 30;
+			ctx.lineTo(x, y);
+
+			if (ladderBridgeStatus[x - xPlus + y + i]) {
+				x -= xPlus;
+				ctx.lineTo(x, y);
+			} else if (ladderBridgeStatus[x + y + i]) {
+				x += xPlus;
+				ctx.lineTo(x, y);
+			}
+		}
+
+		ctx.lineTo(x, y + 35);
+		ctx.stroke();
+
+		ctx.strokeRect(x - 30, 280, 60, 30);
+		ladderButtonStatus[num] = true;
 	}
 }
 
@@ -188,37 +286,55 @@ function canvasTextInput () {
 	let line = 100;
 	let xPlus = Math.floor(550 / (people - 1));
 
-	function drawText (text, x, y) {
-		ctx.textBaseline = 'center';
-		ctx.textAlign = 'left';
-		ctx.font = '16px sans-serif';
-		ctx.fillText(text, x + 5, y + 20);
-	}
+	let inputNum = 0;
 
-	function addInput (x, y, num) {
+	function addInput (x, num) {
 		let canvasInput = document.createElement('input');
 
-		if (num === 1) {
-			canvasInput.left = x;
-			canvasInput.top = 40;
-		} else if (num === 2) {
-			canvasInput.left = x;
-			canvasInput.top = 280;
-		}
+		++inputNum;
 
+		canvasInput.number = inputNum;
 		canvasInput.type = 'text';
-		canvasInput.maxLength = '4';
-		canvasInput.style.width = '58px';
+		canvasInput.maxLength = '3';
+		canvasInput.style.width = '57px';
 		canvasInput.style.height = '30px';
 		canvasInput.style.border = 'none';
 		canvasInput.style.position = 'fixed';
-		canvasInput.style.marginLeft = `${x + 2}px`;
-		canvasInput.style.marginTop = `${y}px`;
 
-		canvasInput.addEventListener('keydown', function (e) {
-			if (e.keyCode === 13) {
-				drawText(this.value, this.left, this.top);
-				canvasCover.removeChild(this);
+		if (num === 1) {
+			let y = 16;
+
+			canvasInput.left = x;
+			canvasInput.style.marginLeft = `${x + 3}px`;
+			canvasInput.top = y;
+			canvasInput.style.marginTop = `${y}px`;
+		} else if (num === 2) {
+			let y = 256;
+
+			canvasInput.left = x;
+			canvasInput.style.marginLeft = `${x + 3}px`;
+			canvasInput.top = y;
+			canvasInput.style.marginTop = `${y}px`;
+		}
+
+		canvasInput.addEventListener('focusout', function (e) {
+			if (this.value) {
+				if (e) {
+					this.readOnly = true;
+					if (this.top === 16) {
+						this.style.cursor = 'pointer';
+						this.addEventListener('click', function (e) {
+							if (e) {
+								ladderBridgeColor(this.left, this.number);
+							}
+						});
+					}
+
+					--inputNum;
+					if (inputNum === 0) {
+						drawLadder();
+					}
+				}
 			}
 		});
 
@@ -226,9 +342,10 @@ function canvasTextInput () {
 	}
 
 	canvasCover.classList.remove('hidden');
+
 	for (let l = 1; l <= people; l++) {
-		addInput(line - 30, 40, 1);
-		addInput(line - 30, 280, 2);
+		addInput(line - 30, 1);
+		addInput(line - 30, 2);
 		line += xPlus;
 	}
 }
@@ -253,6 +370,6 @@ upBtn.addEventListener('click', function () {
 
 submit.addEventListener('click', function () {
 	modal.classList.add('hidden');
-	drawLadder();
+	drawRect();
 	canvasTextInput();
 });
