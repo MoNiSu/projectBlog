@@ -6,7 +6,7 @@ const path = require('path');
 const indexRouter = require('./routes/index.js');
 const authRouter = require('./routes/auth.js');
 const boardRouter = require('./routes/board.js');
-const ladderRouter = require('./routes/ladder.js');
+const enterRouter = require('./routes/enter.js');
 
 const app = express();
 const server = http.createServer(app);
@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/board', boardRouter);
-app.use('/ladder', ladderRouter);
+app.use('/enter', enterRouter);
 
 /* app.use(function (req, res, next) {
 	next(createError(404));

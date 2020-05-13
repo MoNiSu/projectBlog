@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 	signup: 'pages/signup', { title: 'auth' } */
 	// res.redirect('/1');
 	// console.log(req.get('host'));
-	res.render('pages/ladder', { title: 'Ladder' });
+	res.render('pages/wordchain', { title: '1' });
 });
 
 app.get('/:page', function (req, res) {
