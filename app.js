@@ -30,8 +30,8 @@ app.use('/enter', enterRouter);
 }); */
 
 app.use(function (err, req, res) {
-	res.locals.message = err;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
+	req.locals.message = err;
+	req.locals.error = req.app.get('env') === 'development' ? err : {};
 
 	res.status(err.status || 500);
 	// console.log("error occurred", err);
