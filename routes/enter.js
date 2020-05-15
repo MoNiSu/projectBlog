@@ -11,7 +11,7 @@ router.get('/ladder', function (req, res) {
 	if (req.session.username) {
 		res.render('pages/ladder', { title: 'Ladder' });
 	} else {
-		res.redirect('./auth/signin');
+		res.redirect('../auth/signin');
 	}
 });
 
@@ -19,7 +19,7 @@ router.get('/wordchain', function (req, res) {
 	if (req.session.username) {
 		res.render('pages/wordchain', { title: 'Word Chain' });
 	} else {
-		res.redirect('./auth/signin');
+		res.redirect('../auth/signin');
 	}
 });
 
