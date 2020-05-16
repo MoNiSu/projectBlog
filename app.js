@@ -27,16 +27,18 @@ app.use('/board', boardRouter);
 app.use('/ladder', ladderRouter);
 app.use('/wordchain', wordchainRouter);
 
-/* app.use(function (req, res, next) {
-	next(createError(404));
-}); */
+app.use(function (req, res, next) {
+	let err = new Error('Not Founc');
+	err.status = 404;
+	next(err);
+});
 
 app.use(function (err, req, res) {
-	req.locals.message = err;
-	req.locals.error = req.app.get('env') === 'development' ? err : {};
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
 	res.status(err.status || 500);
-	// console.log("error occurred", err);
+	console.log('error occurred ', err);
 	res.render('pages/error', { title: 'Error', error: err });
 });
 
