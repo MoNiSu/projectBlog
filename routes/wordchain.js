@@ -35,7 +35,9 @@ router.post('/word', function (req, res) {
 						console.log('error occurred', err);
 						res.render('pages/error', { title: 'Error', error: err });
 					} else {
-						if (results.channel.total !== 0) {
+						if (Number(results.channel.total) === 0) {
+							res.send('NONE');
+						} else {
 							if (results.channel.item[0].pos.toString() === '명사') {
 								connection.query('SELECT * FROM korean WHERE word LIKE ?', `${req.body.value[req.body.value.length - 1]}%`, function (err, results) {
 									if (err) {
@@ -77,8 +79,6 @@ router.post('/word', function (req, res) {
 							} else {
 								res.send('NOT');
 							}
-						} else {
-							res.send('NONE');
 						}
 					}
 				});
