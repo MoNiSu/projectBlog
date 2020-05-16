@@ -1,14 +1,17 @@
 const express = require('express');
-const mysql = require('mysql');
+// const mysql = require('mysql');
 const http = require('http');
 const path = require('path');
+const xml2js = require('xml2js');
 
-const dbConfig = require('./config/database.js');
 
-const connection = mysql.createPool(dbConfig);
+// const dbConfig = require('./config/database.js');
+
+// const connection = mysql.createPool(dbConfig);
 
 const app = express();
 const server = http.createServer(app);
+
 
 /* Modification required for each model
 windows_wsl : 8080, ubuntu: 3000 mac: 3000 */
@@ -28,10 +31,10 @@ app.get('/', function (req, res) {
 	signup: 'pages/signup', { title: 'auth' } */
 	// res.redirect('/1');
 	// console.log(req.get('host'));
-	res.render('pages/wordchain', { title: '1' });
+	res.render('pages/wordchain', { title: 'E' });
 });
 
-app.get('/:page', function (req, res) {
+/* app.get('/:page', function (req, res) {
 	connection.query('SELECT * FROM board', function (err, results) {
 		if (err) {
 			console.log('error occured', err);
@@ -45,7 +48,7 @@ app.get('/:page', function (req, res) {
 			}
 		}
 	});
-});
+}); */
 
 server.listen(port, function () {
 	console.log(' server listening on port ', port);

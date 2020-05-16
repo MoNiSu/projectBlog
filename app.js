@@ -1,15 +1,16 @@
 const express = require('express');
-const http = require('http');
+const https = require('https');
 const path = require('path');
 // const createError = require('http-errors');
 
 const indexRouter = require('./routes/index.js');
 const authRouter = require('./routes/auth.js');
 const boardRouter = require('./routes/board.js');
-const enterRouter = require('./routes/enter.js');
+const ladderRouter = require('./routes/ladder.js');
+const wordchainRouter = require('./routes/wordchain.js');
 
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer(app);
 
 const port = process.env.PORT || 3000;
 
@@ -23,7 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/board', boardRouter);
-app.use('/enter', enterRouter);
+app.use('/ladder', ladderRouter);
+app.use('/wordchain', wordchainRouter);
 
 /* app.use(function (req, res, next) {
 	next(createError(404));

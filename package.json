@@ -14,7 +14,8 @@
     "express-mysql-session": "^2.1.4",
     "express-session": "^1.17.0",
     "http-errors": "^1.7.3",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "eslint": "^6.8.0"

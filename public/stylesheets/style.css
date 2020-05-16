@@ -329,3 +329,19 @@ canvas {
 .hidden {
   display: none;
 }
+
+.beforeWords {
+  margin: 3px 3px;
+  font-size: 1.17em;
+  color: rgb(0, 0, 255);
+}
+
+.nowWord {
+  margin: 3px 3px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.remainTime {
+  margin: 3px 3px;
+}

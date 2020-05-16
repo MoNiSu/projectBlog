@@ -12,16 +12,23 @@
       <%- include('../partials/nav.ejs'); %>
     </nav>
     <main>
-      <h1>준비 중</h1>
-      <div class="beforeWords"></div>
-      <div class="nowWord"></div>
-      <div class="remainTime"></div>
-      <input type="text" />
-      <button type="button" onclick="location.href='../'">Home</button>
+      <div id="jsBeforeWords" class="beforeWords"></div>
+      <div id="jsNowWord" class="nowWord">단어를 입력하세요.</div>
+      <div id="jsRemainTime" class="remainTime"></div>
+      <div id="jsWordStatus" class="wordStatus"></div>
+      <input id="jsWordInput" type="text" required />
+      <div id="jsModal" class="modal">
+        <div class="modalOverlay"></div>
+        <div class="modalContent">
+          <h2 id="jsModalValue">Start?</h2>
+          <button id="jsStart">Start</button>
+        </div>
+      </div>
     </main>
     <footer>
       <%- include('../partials/footer.ejs'); %>
     </footer>
     <script type="text/javascript" src="/javascripts/index.js"></script>
+    <script type="text/javascript" src="/javascripts/wordchain.js"></script>
   </body>
 </html>
