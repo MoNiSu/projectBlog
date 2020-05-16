@@ -9,7 +9,7 @@ const startBtn = document.getElementById('jsStart');
 
 var wordNumber = 1;
 var wordList = {};
-var beforeWord = false;
+var firstWord = false;
 
 function httpRequestAsync (type, url, data, callback) {
 	let xmlHttp = new XMLHttpRequest();
@@ -47,7 +47,7 @@ wordInput.addEventListener('keydown', function (e) {
 
 			if (wordList[wordValue]) {
 				wordStatus.innerHTML = '사용했던 단어 입니다.';
-			} else if (!beforeWord || nowWord[nowWord.length - 1] === wordValue[0]) {
+			} else if (!firstWord || nowWord.innerHTML[nowWord.innerHTML.length - 1] === wordValue[0]) {
 				this.value = '';
 				httpRequestAsync('POST', './wordchain/word', JSON.stringify(wordForm), function (response) {
 					if (response === 'NOT') {
@@ -79,7 +79,7 @@ wordInput.addEventListener('keydown', function (e) {
 						wordList[response] = true;
 						++wordNumber;
 
-						beforeWord = wordValue;
+						firstWord = true;
 						beforeWords.innerHTML = `[ ${wordValue} ]`;
 
 						let time = 10;
@@ -100,7 +100,7 @@ wordInput.addEventListener('keydown', function (e) {
 						}, 1000);
 					}
 				});
-			} else if (beforeWord && nowWord[nowWord.length - 1] !== wordValue[0]) {
+			} else if (firstWord && nowWord.innerHTML[nowWord.innerHTML.length - 1] !== wordValue[0]) {
 				wordStatus.innerHTML = '제시된 낱말의 마지막 글자로 시작하는 낱말을 제시해주세요.';
 			}
 		}
