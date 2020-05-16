@@ -36,20 +36,20 @@ router.post('/word', function (req, res) {
 						res.render('pages/error', { title: 'Error', error: err });
 					} else {
 						if (results.channel.item[0].pos.toString() === '명사') {
-							connection.query('INSERT INTO korean SET ?', req.body.value, function (err, results) {
+							connection.query('INSERT INTO korean SET ?', `${req.body.value}`, function (err, results) {
 								if (err) {
 									console.log('error occurred', err);
 								} else {
 									console.log('korean success : ', results);
-									connection.query('SELECT * FROM korean WHERE word LIKE ?', `${req.body.value[req.body.value.length - 1]}%`, function (err, results) {
-										if (err) {
-											console.log('error occurred', err);
-											res.send('LOSE');
-										} else {
-											res.send(results[Math.round(Math.random() * (results.length - 1))].word);
-										}
-									});
 								}
+								connection.query('SELECT * FROM korean WHERE word LIKE ?', `${req.body.value[req.body.value.length - 1]}%`, function (err, results) {
+									if (err) {
+										console.log('error occurred', err);
+										res.send('LOSE');
+									} else {
+										res.send(results[Math.round(Math.random() * (results.length - 1))].word);
+									}
+								});
 							});
 						} else {
 							res.send('NOT');
