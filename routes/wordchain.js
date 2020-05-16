@@ -38,7 +38,7 @@ router.post('/word', function (req, res) {
 						if (results.channel.item[0].pos.toString() === '명사') {
 							connection.query('INSERT INTO korean SET word = ?', req.body.value, function (err, results) {
 								if (err) {
-									console.log('error occurred', err);
+									// console.log('error occurred', err);
 								} else {
 									console.log('korean success : ', results);
 								}
