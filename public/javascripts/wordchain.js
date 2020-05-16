@@ -10,6 +10,7 @@ const startBtn = document.getElementById('jsStart');
 var wordNumber = 1;
 var wordList = {};
 var firstWord = false;
+var timerStatus = false;
 
 function httpRequestAsync (type, url, data, callback) {
 	let xmlHttp = new XMLHttpRequest();
@@ -62,6 +63,7 @@ wordInput.addEventListener('keydown', function (e) {
 							window.location.reload();
 						});
 					} else {
+						timerStatus = false;
 						wordList[wordValue] = true;
 						++wordNumber;
 
@@ -73,6 +75,7 @@ wordInput.addEventListener('keydown', function (e) {
 						beforeWords.innerHTML = `[ ${wordValue} ]`;
 
 						let time = 10;
+						timerStatus = true;
 
 						let timer = setInterval(function () {
 							remainTime.innerHTML = time;
@@ -86,6 +89,8 @@ wordInput.addEventListener('keydown', function (e) {
 								startBtn.addEventListener('click', function () {
 									window.location.reload();
 								});
+							} else if (timerStatus) {
+								clearInterval(timer);
 							}
 						}, 1000);
 					}
