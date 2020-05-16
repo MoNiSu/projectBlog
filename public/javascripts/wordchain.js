@@ -45,7 +45,7 @@ wordInput.addEventListener('keydown', function (e) {
 
 			if (!beforeWord || nowWord[nowWord.length - 1] === wordValue[0]) {
 				this.value = '';
-				httpRequestAsync('POST', '/word', JSON.stringify(wordForm), function (response) {
+				httpRequestAsync('POST', './wordchain/word', JSON.stringify(wordForm), function (response) {
 					if (response === 'NOT') {
 						wordStatus.innerHTML = '명사가 아닙니다.';
 					} else if (response === 'LOSE') {
