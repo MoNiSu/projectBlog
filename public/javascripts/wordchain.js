@@ -8,6 +8,7 @@ const modalValue = document.getElementById('jsModalValue');
 const startBtn = document.getElementById('jsStart');
 
 var wordNumber = 1;
+var wordList = {};
 var beforeWord = false;
 
 function httpRequestAsync (type, url, data, callback) {
@@ -40,10 +41,13 @@ wordInput.addEventListener('keydown', function (e) {
 			let wordValue = this.value;
 			let wordForm = {
 				name: wordNumber,
-				value: wordValue
+				value: wordValue,
+				wordList: wordList
 			};
 
-			if (!beforeWord || nowWord[nowWord.length - 1] === wordValue[0]) {
+			if (wordList[wordValue]) {
+				wordStatus.innerHTML = '사용했던 단어 입니다.';
+			} else if (!beforeWord || nowWord[nowWord.length - 1] === wordValue[0]) {
 				this.value = '';
 				httpRequestAsync('POST', './wordchain/word', JSON.stringify(wordForm), function (response) {
 					if (response === 'NOT') {
@@ -56,7 +60,13 @@ wordInput.addEventListener('keydown', function (e) {
 							window.location.reload();
 						});
 					} else {
+						wordList[wordValue] = true;
+						++wordNumber;
+
 						nowWord.innerHTML = response;
+						wordList[response] = true;
+						++wordNumber;
+
 						beforeWord = wordValue;
 						beforeWords.innerHTML = `[ ${wordValue} ]`;
 
@@ -78,9 +88,9 @@ wordInput.addEventListener('keydown', function (e) {
 						}, 1000);
 					}
 				});
+			} else if (beforeWord) {
+				wordStatus.innerHTML = '제시된 낱말의 마지막 글자로 시작하는 낱말을 제시해주세요.';
 			}
-		} else if (beforeWord) {
-			wordStatus.innerHTML = '제시된 낱말의 마지막 글자로 시작하는 낱말을 제시해주세요.';
 		}
 	} else {
 		wordStatus.innerHTML = '2글자 이상만 가능합니다.';

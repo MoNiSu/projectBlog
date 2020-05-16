@@ -49,7 +49,26 @@ router.post('/word', function (req, res) {
 										if (!results.word) {
 											res.send('LOSE');
 										} else {
-											res.send(results[Math.round(Math.random() * (results.length - 1))].word);
+											let num = Math.round(Math.floor(Math.random()) / 9 * (results.length - 1));
+											if (req.body.wordList[results[num].word]) {
+												num = Math.round(Math.floor(Math.random()) / 9 * (results.length - 1));
+												if (req.body.wordList[results[num].word]) {
+													for (num = 0; num <= results.length - 1; num++) {
+														if (num < results.length - 1) {
+															if (!req.body.wordList[results[num].word]) {
+																break;
+															}
+														} else {
+															if (!req.body.wordList[results[num].word]) {
+																break;
+															} else {
+																res.send('LOSE');
+															}
+														}
+													}
+												}
+											}
+											res.send(req.body.wordList[results[num].word]);
 										}
 									}
 								});
