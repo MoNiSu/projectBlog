@@ -46,7 +46,7 @@ router.post('/word', function (req, res) {
 									if (err) {
 										console.log('error occurred', err);
 									} else {
-										if (!results) {
+										if (!results[0].word) {
 											res.send('LOSE');
 										} else {
 											res.send(results[Math.round(Math.random() * (results.length - 1))].word);
