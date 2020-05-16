@@ -1,5 +1,5 @@
 const express = require('express');
-const https = require('https');
+const http = require('http');
 const path = require('path');
 // const createError = require('http-errors');
 
@@ -10,7 +10,7 @@ const ladderRouter = require('./routes/ladder.js');
 const wordchainRouter = require('./routes/wordchain.js');
 
 const app = express();
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 const port = process.env.PORT || 3000;
 
