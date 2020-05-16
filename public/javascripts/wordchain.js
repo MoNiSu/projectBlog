@@ -60,7 +60,7 @@ wordInput.addEventListener('keydown', function (e) {
 						beforeWord = wordValue;
 						beforeWords.innerHTML = `[ ${wordValue} ]`;
 
-						let time = 5;
+						let time = 10;
 
 						let timer = setInterval(function () {
 							remainTime.innerHTML = time;
