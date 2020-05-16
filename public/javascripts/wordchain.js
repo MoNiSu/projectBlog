@@ -50,7 +50,9 @@ wordInput.addEventListener('keydown', function (e) {
 			} else if (!firstWord || nowWord.innerHTML[nowWord.innerHTML.length - 1] === wordValue[0]) {
 				this.value = '';
 				httpRequestAsync('POST', './wordchain/word', JSON.stringify(wordForm), function (response) {
-					if (response === 'NOT') {
+					if (response === 'NONE') {
+						wordStatus.innerHTML = '단어가 아닙니다.';
+					} else if (response === 'NOT') {
 						wordStatus.innerHTML = '명사가 아닙니다.';
 					} else if (response === 'LOSE') {
 						modalValue.innerHTML = '승리! 하지만 컴퓨터는 점점 성장합니다.';

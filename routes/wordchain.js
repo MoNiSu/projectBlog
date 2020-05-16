@@ -35,46 +35,50 @@ router.post('/word', function (req, res) {
 						console.log('error occurred', err);
 						res.render('pages/error', { title: 'Error', error: err });
 					} else {
-						if (results.channel.item[0].pos.toString() === '명사') {
-							connection.query('SELECT * FROM korean WHERE word LIKE ?', `${req.body.value[req.body.value.length - 1]}%`, function (err, results) {
-								if (err) {
-									console.log('error occurred', err);
-								} else {
-									if (!results[0]) {
-										res.send('LOSE');
+						if (results.channel.total !== 0) {
+							if (results.channel.item[0].pos.toString() === '명사') {
+								connection.query('SELECT * FROM korean WHERE word LIKE ?', `${req.body.value[req.body.value.length - 1]}%`, function (err, results) {
+									if (err) {
+										console.log('error occurred', err);
 									} else {
-										let num = Math.round(Math.floor(Math.random()) / 9 * (results.length - 1));
-										if (req.body.wordList[results[num].word]) {
-											num = Math.round(Math.floor(Math.random()) / 9 * (results.length - 1));
+										if (!results[0]) {
+											res.send('LOSE');
+										} else {
+											let num = Math.round(Math.floor(Math.random()) / 9 * (results.length - 1));
 											if (req.body.wordList[results[num].word]) {
-												for (num = 0; num <= results.length - 1; num++) {
-													if (num < results.length - 1) {
-														if (!req.body.wordList[results[num].word]) {
-															break;
-														}
-													} else {
-														if (!req.body.wordList[results[num].word]) {
-															break;
+												num = Math.round(Math.floor(Math.random()) / 9 * (results.length - 1));
+												if (req.body.wordList[results[num].word]) {
+													for (num = 0; num <= results.length - 1; num++) {
+														if (num < results.length - 1) {
+															if (!req.body.wordList[results[num].word]) {
+																break;
+															}
 														} else {
-															res.send('LOSE');
+															if (!req.body.wordList[results[num].word]) {
+																break;
+															} else {
+																res.send('LOSE');
+															}
 														}
 													}
 												}
 											}
+											res.send(results[num].word);
 										}
-										res.send(results[num].word);
-									}
-									connection.query('INSERT INTO korean SET word = ?', req.body.value, function (err, results) {
-										if (err) {
+										connection.query('INSERT INTO korean SET word = ?', req.body.value, function (err, results) {
+											if (err) {
 											// console.log('error occurred', err);
-										} else {
-											console.log('korean success : ', results);
-										}
-									});
-								}
-							});
+											} else {
+												console.log('korean success : ', results);
+											}
+										});
+									}
+								});
+							} else {
+								res.send('NOT');
+							}
 						} else {
-							res.send('NOT');
+							res.send('NONE');
 						}
 					}
 				});
