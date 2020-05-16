@@ -100,7 +100,7 @@ wordInput.addEventListener('keydown', function (e) {
 						}, 1000);
 					}
 				});
-			} else if (beforeWord) {
+			} else if (beforeWord && nowWord[nowWord.length - 1] !== wordValue[0]) {
 				wordStatus.innerHTML = '제시된 낱말의 마지막 글자로 시작하는 낱말을 제시해주세요.';
 			}
 		}
