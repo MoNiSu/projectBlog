@@ -68,7 +68,7 @@ router.post('/word', function (req, res) {
 													}
 												}
 											}
-											res.send(req.body.wordList[results[num].word]);
+											res.send(results[num].word);
 										}
 									}
 								});
