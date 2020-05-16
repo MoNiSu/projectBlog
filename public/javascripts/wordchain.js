@@ -57,20 +57,8 @@ wordInput.addEventListener('keydown', function (e) {
 						startBtn.innerHTML = 'Restart?';
 						modal.classList.remove('hidden');
 						startBtn.addEventListener('click', function () {
-							location.href = '../';
+							window.location.reload();
 						});
-
-						let time = 5;
-
-						let timer = setInterval(function () {
-							remainTime.innerHTML = time;
-							--time;
-
-							if (time < 0) {
-								clearInterval(timer);
-								location.href = '../';
-							}
-						}, 1000);
 					} else {
 						wordList[wordValue] = true;
 						++wordNumber;
