@@ -89,7 +89,7 @@ wordInput.addEventListener('keydown', function (e) {
 								startBtn.addEventListener('click', function () {
 									window.location.reload();
 								});
-							} else if (timerStatus) {
+							} else if (!timerStatus) {
 								clearInterval(timer);
 							}
 						}, 1000);
