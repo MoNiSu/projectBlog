@@ -302,14 +302,14 @@ function canvasTextInput () {
 		canvasInput.style.position = 'fixed';
 
 		if (num === 1) {
-			let y = 40;
+			let y = 35;
 
 			canvasInput.left = x;
 			canvasInput.style.marginLeft = `${x + 3}px`;
 			canvasInput.top = y;
 			canvasInput.style.marginTop = `${y}px`;
 		} else if (num === 2) {
-			let y = 280;
+			let y = 275;
 
 			canvasInput.left = x;
 			canvasInput.style.marginLeft = `${x + 3}px`;
@@ -321,7 +321,7 @@ function canvasTextInput () {
 			if (this.value) {
 				if (e) {
 					this.readOnly = true;
-					if (this.top === 40) {
+					if (this.top === 35) {
 						this.style.cursor = 'pointer';
 						this.addEventListener('click', function (e) {
 							if (e) {
