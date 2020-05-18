@@ -39,7 +39,7 @@ router.post('/word', function (req, res) {
 							res.send('NONE');
 						} else {
 							if (results.channel.item[0].pos.toString() !== '명사') {
-								for (let i = 0; i <= results.channel.item.length; i++) {
+								for (let i = 0; i <= results.channel.item.length - 1; i++) {
 									if (results.channel.item[i].pos.toString() === '명사') {
 										connection.query('SELECT * FROM korean WHERE word LIKE ?', `${req.body.value[req.body.value.length - 1]}%`, function (err, results) {
 											if (err) {
@@ -80,7 +80,7 @@ router.post('/word', function (req, res) {
 										});
 										break;
 									}
-									if (i === results.channel.item.length) {
+									if (i === results.channel.item.length - 1) {
 										if (results.channel.item[i].pos.toString() !== '명사') {
 											res.send('NOT');
 										}
