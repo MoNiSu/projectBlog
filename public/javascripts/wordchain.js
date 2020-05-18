@@ -74,7 +74,7 @@ wordInput.addEventListener('keydown', function (e) {
 						firstWord = true;
 						beforeWords.innerHTML = `[ ${wordValue} ]`;
 
-						let time = 10;
+						let time = 15;
 						timerStatus = true;
 
 						let timer = setInterval(function () {
