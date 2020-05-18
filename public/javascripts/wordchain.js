@@ -65,7 +65,7 @@ wordInput.addEventListener('keydown', function (e) {
 							window.location.reload();
 						});
 					} else {
-						clearInterval(timer);
+						timerStatus = false;
 						wordList[wordValue] = true;
 						++wordNumber;
 
