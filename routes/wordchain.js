@@ -101,19 +101,18 @@ router.post('/word', function (req, res) {
 													for (num = 0; num <= results.length - 1; num++) {
 														if (num < results.length - 1) {
 															if (!req.body.wordList[results[num].word]) {
+																res.send(results[num].word);
 																break;
 															}
-														} else {
-															if (!req.body.wordList[results[num].word]) {
-																break;
-															} else {
+															if (num === results.length - 1) {
 																res.send('LOSE');
 															}
 														}
 													}
 												}
+											} else {
+												res.send(results[num].word);
 											}
-											res.send(results[num].word);
 										}
 										connection.query('INSERT INTO korean SET word = ?', req.body.value, function (err, results) {
 											if (err) {
