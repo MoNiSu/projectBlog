@@ -2,7 +2,7 @@ const express = require('express');
 // const mysql = require('mysql');
 const http = require('http');
 const path = require('path');
-const xml2js = require('xml2js');
+// const xml2js = require('xml2js');
 
 
 // const dbConfig = require('./config/database.js');

@@ -191,7 +191,7 @@ function drawLadder () {
 	ladderStatus = true;
 }
 
-function ladderBridgeColor (x, num) { // 70, 16
+function ladderBridgeColor (x, num) {
 	if (ladderStatus && !ladderButtonStatus[num]) {
 		let red;
 		let green;
@@ -302,14 +302,14 @@ function canvasTextInput () {
 		canvasInput.style.position = 'fixed';
 
 		if (num === 1) {
-			let y = 16;
+			let y = 32;
 
 			canvasInput.left = x;
 			canvasInput.style.marginLeft = `${x + 3}px`;
 			canvasInput.top = y;
 			canvasInput.style.marginTop = `${y}px`;
 		} else if (num === 2) {
-			let y = 256;
+			let y = 272;
 
 			canvasInput.left = x;
 			canvasInput.style.marginLeft = `${x + 3}px`;
@@ -321,7 +321,7 @@ function canvasTextInput () {
 			if (this.value) {
 				if (e) {
 					this.readOnly = true;
-					if (this.top === 16) {
+					if (this.top === 32) {
 						this.style.cursor = 'pointer';
 						this.addEventListener('click', function (e) {
 							if (e) {

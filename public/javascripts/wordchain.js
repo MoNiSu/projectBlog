@@ -56,6 +56,8 @@ wordInput.addEventListener('keydown', function (e) {
 					} else if (response === 'NOT') {
 						wordStatus.innerHTML = '명사가 아닙니다.';
 					} else if (response === 'LOSE') {
+						timerStatus = false;
+
 						modalValue.innerHTML = '승리! 하지만 컴퓨터는 점점 성장합니다.';
 						startBtn.innerHTML = 'Restart?';
 						modal.classList.remove('hidden');
@@ -74,7 +76,7 @@ wordInput.addEventListener('keydown', function (e) {
 						firstWord = true;
 						beforeWords.innerHTML = `[ ${wordValue} ]`;
 
-						let time = 10;
+						let time = 15;
 						timerStatus = true;
 
 						let timer = setInterval(function () {
