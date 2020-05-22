@@ -10,7 +10,7 @@ const startBtn = document.getElementById('jsStart');
 var wordNumber = 1;
 var wordList = {};
 var firstWord = false;
-var timerStatus = false;
+var timer;
 
 function httpRequestPostAsync (url, data, callback) {
 	let xmlHttp = new XMLHttpRequest();
@@ -51,8 +51,7 @@ wordInput.addEventListener('keydown', function (e) {
 					} else if (response === 'NOT') {
 						wordStatus.innerHTML = '명사가 아닙니다.';
 					} else if (response === 'LOSE') {
-						timerStatus = false;
-
+						clearInterval(timer);
 						modalValue.innerHTML = '승리! 하지만 컴퓨터는 배웠습니다!';
 						startBtn.innerHTML = 'Restart?';
 						modal.classList.remove('hidden');
@@ -64,7 +63,7 @@ wordInput.addEventListener('keydown', function (e) {
 							modal.classList.add('hidden');
 						});
 					} else {
-						timerStatus = false;
+						clearInterval(timer);
 						wordList[wordValue] = true;
 						++wordNumber;
 
@@ -75,16 +74,10 @@ wordInput.addEventListener('keydown', function (e) {
 						firstWord = true;
 						beforeWords.innerHTML = `[ ${wordValue} ]`;
 
-						let time = 15;
-						timerStatus = true;
+						let time = 5;
 
-						let timer = setInterval(function () {
-							remainTime.innerHTML = time;
-							--time;
-
-							if (!timerStatus) {
-								clearInterval(timer);
-							} else if (time < 0) {
+						timer = setInterval(function () {
+							if (time < 0) {
 								clearInterval(timer);
 								modalValue.innerHTML = 'Game Over';
 								startBtn.innerHTML = 'Restart?';
@@ -93,11 +86,13 @@ wordInput.addEventListener('keydown', function (e) {
 									wordNumber = 1;
 									wordList = {};
 									firstWord = false;
-									timerStatus = false;
 									wordStatus.innerHTML = '';
 									modal.classList.add('hidden');
 								});
 							}
+
+							remainTime.innerHTML = time;
+							--time;
 						}, 1000);
 					}
 				});
