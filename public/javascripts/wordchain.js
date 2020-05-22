@@ -60,10 +60,15 @@ wordInput.addEventListener('keydown', function (e) {
 							wordList = {};
 							firstWord = false;
 							wordStatus.innerHTML = '';
+							nowWord.innerHTML = '';
+							beforeWords.innerHTML = '';
+							remainTime.innerHTML = '';
 							modal.classList.add('hidden');
 						});
 					} else {
 						clearInterval(timer);
+						remainTime.innerHTML = '';
+
 						wordList[wordValue] = true;
 						++wordNumber;
 
@@ -87,6 +92,9 @@ wordInput.addEventListener('keydown', function (e) {
 									wordList = {};
 									firstWord = false;
 									wordStatus.innerHTML = '';
+									nowWord.innerHTML = '';
+									beforeWords.innerHTML = '';
+									remainTime.innerHTML = '';
 									modal.classList.add('hidden');
 								});
 							}
