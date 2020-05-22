@@ -63,7 +63,7 @@ router.post('/word', function (req, res) {
 									});
 									connection.query('INSERT INTO korean SET word = ?', req.body.value, function (err, results) {
 										if (err) {
-											console.log('error occurred', err);
+											// console.log('error occurred', err);
 										} else {
 											console.log('korean success : ', req.body.value, results);
 										}
