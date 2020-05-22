@@ -1,7 +1,6 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-// const createError = require('http-errors');
 
 const indexRouter = require('./routes/index.js');
 const authRouter = require('./routes/auth.js');
@@ -11,8 +10,6 @@ const wordchainRouter = require('./routes/wordchain.js');
 
 const app = express();
 const server = http.createServer(app);
-
-const port = process.env.PORT || 3000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -42,8 +39,8 @@ app.use(function (err, req, res) {
 	res.render('pages/error', { title: 'Error', error: err });
 });
 
-server.listen(port, function () {
-	console.log(' server listening on ', port);
+server.listen(3000, function () {
+	console.log(' server listening on 3000');
 });
 
 module.exports = app;

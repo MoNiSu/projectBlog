@@ -12,13 +12,11 @@ var wordList = {};
 var firstWord = false;
 var timerStatus = false;
 
-function httpRequestAsync (type, url, data, callback) {
+function httpRequestPostAsync (url, data, callback) {
 	let xmlHttp = new XMLHttpRequest();
 
-	xmlHttp.open(type, url, true);
-	if (type === 'POST') {
-		xmlHttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-	}
+	xmlHttp.open('POST', url, true);
+	xmlHttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 	xmlHttp.onreadystatechange = function () {
 		if (xmlHttp.readyState === XMLHttpRequest.DONE && xmlHttp.status === 200) {
 			callback(xmlHttp.responseText);
@@ -33,9 +31,6 @@ startBtn.addEventListener('click', function () {
 });
 
 wordInput.addEventListener('keydown', function (e) {
-	// eslint-disable-next-line no-useless-escape
-	this.value = this.value.replace(/[ㄱ-ㅎㅏ-ㅣ]|[\s*]|[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g, '');
-
 	if (this.value.length >= 2) {
 		wordStatus.innerHTML = '';
 		if (e.keyCode === 13) {
@@ -50,7 +45,7 @@ wordInput.addEventListener('keydown', function (e) {
 				wordStatus.innerHTML = '사용했던 단어 입니다.';
 			} else if (!firstWord || nowWord.innerHTML[nowWord.innerHTML.length - 1] === wordValue[0]) {
 				this.value = '';
-				httpRequestAsync('POST', './wordchain/word', JSON.stringify(wordForm), function (response) {
+				httpRequestPostAsync('./wordchain/word', JSON.stringify(wordForm), function (response) {
 					if (response === 'NONE') {
 						wordStatus.innerHTML = '단어가 아닙니다.';
 					} else if (response === 'NOT') {
@@ -58,11 +53,15 @@ wordInput.addEventListener('keydown', function (e) {
 					} else if (response === 'LOSE') {
 						timerStatus = false;
 
-						modalValue.innerHTML = '승리! 하지만 컴퓨터는 점점 성장합니다.';
+						modalValue.innerHTML = '승리! 하지만 컴퓨터는 배웠습니다!';
 						startBtn.innerHTML = 'Restart?';
 						modal.classList.remove('hidden');
 						startBtn.addEventListener('click', function () {
-							window.location.reload();
+							wordNumber = 1;
+							wordList = {};
+							firstWord = false;
+							wordStatus.innerHTML = '';
+							modal.classList.add('hidden');
 						});
 					} else {
 						timerStatus = false;
@@ -83,16 +82,21 @@ wordInput.addEventListener('keydown', function (e) {
 							remainTime.innerHTML = time;
 							--time;
 
-							if (time < 0) {
+							if (!timerStatus) {
+								clearInterval(timer);
+							} else if (time < 0) {
 								clearInterval(timer);
 								modalValue.innerHTML = 'Game Over';
 								startBtn.innerHTML = 'Restart?';
 								modal.classList.remove('hidden');
 								startBtn.addEventListener('click', function () {
-									window.location.reload();
+									wordNumber = 1;
+									wordList = {};
+									firstWord = false;
+									timerStatus = false;
+									wordStatus.innerHTML = '';
+									modal.classList.add('hidden');
 								});
-							} else if (!timerStatus) {
-								clearInterval(timer);
 							}
 						}, 1000);
 					}

@@ -40,7 +40,6 @@ router.get('/:page', function (req, res) {
 
 router.post('/', function (req, res) {
 	let today = new Date();
-	today.setHours(today.getHours() + 9);
 
 	let board = {
 		username: req.session.username,
