@@ -60,7 +60,7 @@ wordInput.addEventListener('keydown', function (e) {
 							wordList = {};
 							firstWord = false;
 							wordStatus.innerHTML = '';
-							nowWord.innerHTML = '';
+							nowWord.innerHTML = '단어를 입력하세요.';
 							beforeWords.innerHTML = '';
 							remainTime.innerHTML = '';
 							modal.classList.add('hidden');
@@ -92,7 +92,7 @@ wordInput.addEventListener('keydown', function (e) {
 									wordList = {};
 									firstWord = false;
 									wordStatus.innerHTML = '';
-									nowWord.innerHTML = '';
+									nowWord.innerHTML = '단어를 입력하세요.';
 									beforeWords.innerHTML = '';
 									remainTime.innerHTML = '';
 									modal.classList.add('hidden');
