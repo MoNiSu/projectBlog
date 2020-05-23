@@ -25,7 +25,7 @@ app.use('/ladder', ladderRouter);
 app.use('/wordchain', wordchainRouter);
 
 app.use(function (req, res, next) {
-	let err = new Error('Not Found');
+	let err = new Error('Not Found', req.url);
 	err.status = 404;
 	next(err);
 });
