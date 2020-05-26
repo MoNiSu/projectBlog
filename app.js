@@ -24,6 +24,14 @@ app.use('/board', boardRouter);
 app.use('/ladder', ladderRouter);
 app.use('/wordchain', wordchainRouter);
 
+app.use('/robots.txt', function (req, res) {
+	res.sendFile(path.join(__dirname, '/robots.txt'));
+});
+
+app.use('/sitemap.xml', function (req, res) {
+	res.sendFile(path.join(__dirname, '/sitemap.xml'));
+});
+
 app.use(function (req, res, next) {
 	let err = new Error('Not Found');
 	console.log('Not Found error occurred at', req.url);

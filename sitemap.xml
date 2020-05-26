@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://blog.monisu.kr/</loc>
+    <lastmod>2020-05-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://blog.monisu.kr/auth/signin</loc>
+    <lastmod>2020-05-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://blog.monisu.kr/auth/signup</loc>
+    <lastmod>2020-05-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://blog.monisu.kr/auth/board</loc>
+    <lastmod>2020-05-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://blog.monisu.kr/auth/ladder</loc>
+    <lastmod>2020-05-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://blog.monisu.kr/auth/wordchain</loc>
+    <lastmod>2020-05-26</lastmod>
+  </sitemap>
+</sitemapindex>
