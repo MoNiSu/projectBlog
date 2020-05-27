@@ -13,15 +13,15 @@
     <lastmod>2020-05-26</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://blog.monisu.kr/auth/board</loc>
+    <loc>https://blog.monisu.kr/board</loc>
     <lastmod>2020-05-26</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://blog.monisu.kr/auth/ladder</loc>
+    <loc>https://blog.monisu.kr/ladder</loc>
     <lastmod>2020-05-26</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://blog.monisu.kr/auth/wordchain</loc>
+    <loc>https://blog.monisu.kr/wordchain</loc>
     <lastmod>2020-05-26</lastmod>
   </sitemap>
 </sitemapindex>
