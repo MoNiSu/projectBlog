@@ -34,7 +34,7 @@ app.use('/sitemap.xml', function (req, res) {
 
 app.use(function (req, res, next) {
 	let err = new Error('Not Found');
-	console.log('Not Found error occurred at', req.url);
+	console.log('Error occurred at', req.url);
 	err.status = 404;
 	next(err);
 });
