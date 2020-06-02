@@ -68,7 +68,7 @@ nav ul li a {
   -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
   padding: 0 5px;
-  font-size: 1.1rem;
+  font-size:	0.8rem;
   text-decoration: none;
   color: rgb(0, 0, 0);
   font-weight: bold;
@@ -159,6 +159,7 @@ button {
   margin: 3px 3px;
   border: 1px solid rgb(0, 0, 0);
 	border-radius: 5px;
+	font-size:	0.8rem;
   color: rgb(0, 0, 0);
   display: flex;
   justify-content: center;
