@@ -8,7 +8,6 @@ class Character {
 class Hero extends Character {
 	constructor (props) {
 		super(props);
-		this.new = player;
 	}
 }
 
